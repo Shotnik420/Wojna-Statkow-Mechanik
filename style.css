@@ -3,6 +3,9 @@
     width: 70vh;
     background-color: brown;
     display: grid;
-    grid-template-columns: repeat(11,1fr);
-    grid-template-rows: repeat(11,1fr);
+    grid-template-columns: repeat(10,1fr);
+    grid-template-rows: repeat(10,1fr);
+}
+#plansza>*{
+    border: solid black 1px;
 }
