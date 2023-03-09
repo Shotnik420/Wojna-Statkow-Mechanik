@@ -1,11 +1,59 @@
-#plansza{
-    height: 70vh;
-    width: 70vh;
-    background-color: brown;
-    display: grid;
-    grid-template-columns: repeat(10,1fr);
-    grid-template-rows: repeat(10,1fr);
+#plansza {
+  background-color: black(163, 37, 134);
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  gap: 0.1vh;
 }
-#plansza>*{
-    border: solid black 1px;
+
+#matkaPlansza {
+  width: 80vh;
+  background-color: black;
+
+  display: grid;
+  grid-template-columns: 1fr 10fr;
+  grid-template-rows: 1fr 10fr;
+  gap: 0.1vh;
+  grid-template-areas:
+    "holder liczby"
+    "literki plansza";
+}
+
+#holder {
+  width: 7vh;
+  height: 7vh;
+  background-color: rgb(43, 226, 95);
+  border: solid black 0.1vh;
+}
+#liczby {
+  grid-area: liczby;
+  background-color: black;
+
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 0.2vh;
+}
+.liczbyPola {
+  background-color: yellow;
+}
+#literki {
+  grid-area: literki;
+  background-color: aqua;
+  display: grid;
+  grid-template-rows: repeat(10, 1fr);
+  gap: 0.1vh;
+}
+
+#siurek {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background-color: gray;
+  top: 0;
+  left: 10px;
+  opacity: 0;
+}
+.literkiPola {
+  display: grid;
+  place-items: center;
 }
