@@ -12,16 +12,16 @@
       <div onhov id="holder"></div>
 
       <div id="liczby">
-        <div class="liczbyPola"></div>
-        <div class="liczbyPola"></div>
-        <div class="liczbyPola"></div>
-        <div class="liczbyPola"></div>
-        <div class="liczbyPola"></div>
-        <div class="liczbyPola"></div>
-        <div class="liczbyPola"></div>
-        <div class="liczbyPola"></div>
-        <div class="liczbyPola"></div>
-        <div class="liczbyPola"></div>
+        <div class="liczbyPola">1</div>
+        <div class="liczbyPola">2</div>
+        <div class="liczbyPola">3</div>
+        <div class="liczbyPola">4</div>
+        <div class="liczbyPola">5</div>
+        <div class="liczbyPola">6</div>
+        <div class="liczbyPola">7</div>
+        <div class="liczbyPola">8</div>
+        <div class="liczbyPola">9</div>
+        <div class="liczbyPola">10</div>
       </div>
       <div id="literki">
         <div class="literkiPola">A</div>
@@ -37,9 +37,13 @@
       </div>
       <div id="plansza"></div>
     </div>
-    <input type="text" id="pickX" />
-    <input type="number" id="pickY" />
-    <button onclick="dodajStatek()">Dodaj Statek</button>
+    <div>
+      <button id="buon" onclick="dodajStatek()">Dodaj Statek</button>
+      <button id="buon2" onclick="wyborStatku(1)">1</button>
+      <button id="buon2" onclick="wyborStatku(2)">2</button>
+      <button id="buon2" onclick="wyborStatku(3)">3</button>
+      <button id="buon2" onclick="wyborStatku(4)">4</button>
+    </div>
     <div id="siurek"></div>
   </body>
   <script src="script.js"></script>

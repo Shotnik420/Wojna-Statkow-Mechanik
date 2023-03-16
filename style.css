@@ -1,11 +1,25 @@
+* {
+  margin: 0;
+}
+body {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
 #plansza {
   background-color: black(163, 37, 134);
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   grid-template-rows: repeat(10, 1fr);
-  gap: 0.1vh;
+  gap: 3px;
+  z-index: 0;
 }
-
+.pole {
+  background-color: white;
+}
 #matkaPlansza {
   width: 80vh;
   background-color: black;
@@ -13,17 +27,16 @@
   display: grid;
   grid-template-columns: 1fr 10fr;
   grid-template-rows: 1fr 10fr;
-  gap: 0.1vh;
+  gap: 3px;
   grid-template-areas:
     "holder liczby"
     "literki plansza";
+  border: 3px solid black;
 }
 
 #holder {
-  width: 7vh;
-  height: 7vh;
   background-color: rgb(43, 226, 95);
-  border: solid black 0.1vh;
+  aspect-ratio: 1/1;
 }
 #liczby {
   grid-area: liczby;
@@ -31,17 +44,21 @@
 
   display: grid;
   grid-template-columns: repeat(10, 1fr);
-  gap: 0.2vh;
+  gap: 3px;
 }
 .liczbyPola {
+  display: flex;
   background-color: yellow;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
 }
 #literki {
   grid-area: literki;
-  background-color: aqua;
+  background-color: black;
   display: grid;
   grid-template-rows: repeat(10, 1fr);
-  gap: 0.1vh;
+  gap: 3px;
 }
 
 #siurek {
@@ -52,8 +69,19 @@
   top: 0;
   left: 10px;
   opacity: 0;
+
+  pointer-events: none;
+}
+#buon {
+  background-color: green;
 }
 .literkiPola {
   display: grid;
   place-items: center;
+  background-color: aqua;
+}
+.liczbyPola,
+.literkiPola {
+  font-size: 28px;
+  overflow: hidden;
 }
