@@ -37,13 +37,15 @@
       </div>
       <div id="plansza"></div>
     </div>
-    <div>
-      <button id="buon" onclick="zmianaPlanszy()">następna runda</button>
-      <button id="buon2" onclick="wyborStatku(1)">1</button>
-      <button id="buon2" onclick="wyborStatku(2)">2</button>
-      <button id="buon2" onclick="wyborStatku(3)">3</button>
-      <button id="buon2" onclick="wyborStatku(4)">4</button>
-    </div>
+     <div>
+            <button id="buon" onclick="zmianaPlanszy()" style="display: none">następna runda</button>
+            <div id="buonContainer">
+                <button id="buon2" onclick="wyborStatku(1)">1</button>
+                <button id="buon2" onclick="wyborStatku(2)">2</button>
+                <button id="buon2" onclick="wyborStatku(3)">3</button>
+                <button id="buon2" onclick="wyborStatku(4)">4</button>
+            </div>
+        </div>
     <div id="siurek"></div>
   </body>
   <script src="script.js"></script>
