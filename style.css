@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap');
+
 * {
   margin: 0;
 }
@@ -84,4 +86,50 @@ body {
 .literkiPola {
   font-size: 28px;
   overflow: hidden;
+}
+
+#onHold1{
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  background-color: black;
+  z-index: 5;
+}
+
+#onHold1{
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  background-color: black;
+  z-index: 5;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+
+  font-family: 'Inter', sans-serif;
+  
+}
+#onHold1--text{
+  color: white;
+  font-size: 6vh;
+}
+
+#onHold1--button{
+  height: 5vh;
+  width: 22vh;
+  text-align: center;
+  line-height: 5vh;
+  border-radius: 1vh;
+  border: 0.1vh solid white;
+  font-family: 'Inter', sans-serif;
+  font-size: 3vh;
+  color: white;
+}
+
+#onHold1--button:hover{
+  transform: scale(105%);
+  background-color: gray;
+  cursor: pointer;
 }

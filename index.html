@@ -8,6 +8,11 @@
     <link rel="stylesheet" type="text/css" href="./style.css" />
   </head>
   <body>
+    <div id="onHold1">
+      <div id="onHold1--text">Przekaż grę 2 graczowi</div>
+      <div id="onHold1--button" onClick="">Potwierdzam</div>
+    </div>
+    <div id="onHold2"> </div>
     <div id="matkaPlansza">
       <div onhov id="holder"></div>
 
@@ -37,8 +42,10 @@
       </div>
       <div id="plansza"></div>
     </div>
-     <div>
-            <button id="buon" onclick="zmianaPlanszy()" style="display: none">następna runda</button>
+     <div>  
+
+            <button id="buon" onclick="zmianaPlanszy()" style="display: none"  >następna runda</button>
+            <button id="gameStart" style="display: none" onclick="zmianaPlanszy()">Zacznij grę</button>
             <div id="buonContainer">
                 <button id="buon2" onclick="wyborStatku(1)">1</button>
                 <button id="buon2" onclick="wyborStatku(2)">2</button>

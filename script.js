@@ -22,10 +22,24 @@ counter3 = 2;
 counter2 = 3;
 counter1 = 4;
 
+counter2_4 = 1;
+counter2_3 = 2;
+counter2_2 = 3;
+counter2_1 = 4;
+
 setInterval(() => {
-    if (counter1 == 0 && counter2 == 0 && counter3 == 0 && counter4 == 0) {
+    if (counter1 == 0 && counter2 == 0 && counter3 == 0 && counter4 == 0 && lista==1) {
         document.getElementById("buonContainer").style.display = "none";
         document.getElementById("buon").style.display = "block";
+    }
+    else if(counter2_1 == 4 && counter2_2 == 3 && counter2_3 == 2 && counter2_4 == 1 && lista==2){
+        document.getElementById("buonContainer").style.display = "block";
+        document.getElementById("buon").style.display = "none";
+    }
+    if (counter2_1 == 0 && counter2_2 == 0 && counter2_3 == 0 && counter2_4 == 0 && lista==2) {
+        document.getElementById("buonContainer").style.display = "none";
+        document.getElementById("buon").style.display = "none";
+        document.getElementById("gameStart").style.display = "block";
     }
 }, 100);
 
@@ -47,7 +61,7 @@ function checker(ele) {
 // Wybor wielkosci statku
 function wyborStatku(x) {
     dodajStatek();
-    switch (true) {
+    if(lista==1){switch (true) {
         case x == 1 && counter1 > 0:
             dlugosc = 1;
             rotateUpdate();
@@ -70,7 +84,32 @@ function wyborStatku(x) {
             rotateUpdate();
             alert("wykorzystales juz liczbe tych statkow :<");
             return;
-    }
+    }}
+    else if(lista == 2){switch (true) {
+        case x == 1 && counter2_1 > 0:
+            dlugosc = 1;
+            rotateUpdate();
+            return;
+        case x == 2 && counter2_2 > 0:
+            dlugosc = 2;
+            rotateUpdate();
+            return;
+        case x == 3 && counter2_3 > 0:
+            dlugosc = 3;
+            rotateUpdate();
+            return;
+        case x == 4 && counter2_4 > 0:
+            dlugosc = 4;
+            rotateUpdate();
+            return;
+        case counter2_4 == 0 || counter2_3 == 0 || counter2_2 == 0 || counter2_1 == 0:
+            dlugosc = 0;
+            dodajStatek(2);
+            rotateUpdate();
+            alert("wykorzystales juz liczbe tych statkow :<");
+            return;
+    }}
+    
 }
 
 //obracanie statku updater
@@ -135,6 +174,7 @@ function dodajStatek() {
 
                 if (dodajStatekCounter == dlugosc) {
                     if (rotateShip == 0) {
+
                         switch (true) {
                             case dlugosc == 4 && dodajStatekCounter == 4:
                                 counter4--;
@@ -149,6 +189,7 @@ function dodajStatek() {
                                 counter1--;
                                 break;
                         }
+                
                         for (i = 0; i <= dlugosc - 1; i++) {
                             document.getElementById(plansza[xNumber + i] + y).style.backgroundColor = "gray";
                             statki.push(plansza[xNumber + i] + y);
@@ -168,20 +209,24 @@ function dodajStatek() {
                     }
                     //obrot poziomy
                     else if (rotateShip == 1) {
-                        switch (true) {
-                            case dlugosc == 4:
-                                counter4--;
-                                break;
-                            case dlugosc == 3:
-                                counter3--;
-                                break;
-                            case dlugosc == 2:
-                                counter2--;
-                                break;
-                            case dlugosc == 1:
-                                counter1--;
-                                break;
-                        }
+                            switch (true) {
+                                case dlugosc == 4:
+                                    counter4--;
+                                    break;
+                                case dlugosc == 3:
+                                    counter3--;
+                                    break;
+                                case dlugosc == 2:
+                                    counter2--;
+                                    break;
+                                case dlugosc == 1:
+                                    counter1--;
+                                    break;
+                            }
+                        
+                       
+                            
+                        
                         for (i = 0; i <= dlugosc - 1; i++) {
                             document.getElementById(plansza[xNumber] + (y + i)).style.backgroundColor = "gray";
                             statki.push(plansza[xNumber] + (y + i));
@@ -214,7 +259,7 @@ function dodajStatek() {
                 for (j = 0; j < dlugosc; j++) {
                     if (rotateShip == 0) {
                         if (statki2.includes(plansza[xNumber + j] + y) || statkiGhost2.includes(plansza[xNumber + j] + y)) {
-                            console.log("zajete");
+                            alert("statki nie moga sie stykac");
                             dodajStatekCounter2 = 0;
                             break;
                         } else {
@@ -227,7 +272,7 @@ function dodajStatek() {
                     }
                     if (rotateShip == 1) {
                         if (statki2.includes(plansza[xNumber] + (y + j)) || statkiGhost2.includes(plansza[xNumber] + (y + j))) {
-                            console.log("zajete");
+                            alert("statki nie moga sie stykac");
                             dodajStatekCounter2 = 0;
                             break;
                         } else {
@@ -240,6 +285,22 @@ function dodajStatek() {
 
                 if (dodajStatekCounter2 == dlugosc) {
                     if (rotateShip == 0) {
+
+                        switch (true) {
+                            case dlugosc == 4 && dodajStatekCounter2 == 4:
+                                counter2_4 = counter2_4 - 1;
+                                break;
+                            case dlugosc == 3 && dodajStatekCounter2 == 3:
+                                counter2_3--;
+                                break;
+                            case dlugosc == 2 && dodajStatekCounter2 == 2:
+                                counter2_2--;
+                                break;
+                            case dlugosc == 1 && dodajStatekCounter2 == 1:
+                                counter2_1--;
+                                break;
+                        }
+
                         for (i = 0; i <= dlugosc - 1; i++) {
                             document.getElementById(plansza[xNumber + i] + y).style.backgroundColor = "gray";
                             statki2.push(plansza[xNumber + i] + y);
@@ -259,6 +320,20 @@ function dodajStatek() {
                     }
                     //obrot poziomy
                     else if (rotateShip == 1) {
+                        switch (true) {
+                            case dlugosc == 4:
+                                counter2_4 = counter2_4 - 1;
+                                break;
+                            case dlugosc == 3:
+                                counter2_3--;
+                                break;
+                            case dlugosc == 2:
+                                counter2_2--;
+                                break;
+                            case dlugosc == 1:
+                                counter2_1--;
+                                break;
+                        }   
                         for (i = 0; i <= dlugosc - 1; i++) {
                             document.getElementById(plansza[xNumber] + (y + i)).style.backgroundColor = "gray";
                             statki2.push(plansza[xNumber] + (y + i));
@@ -300,6 +375,7 @@ function killer() {
     }
 }
 lista = 1;
+var zmianaPlanszyCounter = 0;
 function zmianaPlanszy() {
     if (lista == 1) {
         lista++;
