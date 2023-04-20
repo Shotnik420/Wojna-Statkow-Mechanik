@@ -8,51 +8,64 @@
     <link rel="stylesheet" type="text/css" href="./style.css" />
   </head>
   <body>
-    <div id="onHold1">
+    <!-- <div id="onHold1">
       <div id="onHold1--text">Przekaż grę 2 graczowi</div>
       <div id="onHold1--button" onClick="">Potwierdzam</div>
     </div>
-    <div id="onHold2"> </div>
-    <div id="matkaPlansza">
-      <div onhov id="holder"></div>
+    <div id="onHold2"></div> -->
+    <div id="sortownik">
+      <div id="matkaPlansza">
+        <div onhov id="holder"></div>
 
-      <div id="liczby">
-        <div class="liczbyPola">1</div>
-        <div class="liczbyPola">2</div>
-        <div class="liczbyPola">3</div>
-        <div class="liczbyPola">4</div>
-        <div class="liczbyPola">5</div>
-        <div class="liczbyPola">6</div>
-        <div class="liczbyPola">7</div>
-        <div class="liczbyPola">8</div>
-        <div class="liczbyPola">9</div>
-        <div class="liczbyPola">10</div>
-      </div>
-      <div id="literki">
-        <div class="literkiPola">A</div>
-        <div class="literkiPola">B</div>
-        <div class="literkiPola">C</div>
-        <div class="literkiPola">D</div>
-        <div class="literkiPola">E</div>
-        <div class="literkiPola">F</div>
-        <div class="literkiPola">G</div>
-        <div class="literkiPola">H</div>
-        <div class="literkiPola">I</div>
-        <div class="literkiPola">J</div>
-      </div>
-      <div id="plansza"></div>
-    </div>
-     <div>  
-
-            <button id="buon" onclick="zmianaPlanszy()" style="display: none"  >następna runda</button>
-            <button id="gameStart" style="display: none" onclick="zmianaPlanszy()">Zacznij grę</button>
-            <div id="buonContainer">
-                <button id="buon2" onclick="wyborStatku(1)">1</button>
-                <button id="buon2" onclick="wyborStatku(2)">2</button>
-                <button id="buon2" onclick="wyborStatku(3)">3</button>
-                <button id="buon2" onclick="wyborStatku(4)">4</button>
-            </div>
+        <div id="liczby">
+          <div class="liczbyPola">1</div>
+          <div class="liczbyPola">2</div>
+          <div class="liczbyPola">3</div>
+          <div class="liczbyPola">4</div>
+          <div class="liczbyPola">5</div>
+          <div class="liczbyPola">6</div>
+          <div class="liczbyPola">7</div>
+          <div class="liczbyPola">8</div>
+          <div class="liczbyPola">9</div>
+          <div class="liczbyPola">10</div>
         </div>
+        <div id="literki">
+          <div class="literkiPola">A</div>
+          <div class="literkiPola">B</div>
+          <div class="literkiPola">C</div>
+          <div class="literkiPola">D</div>
+          <div class="literkiPola">E</div>
+          <div class="literkiPola">F</div>
+          <div class="literkiPola">G</div>
+          <div class="literkiPola">H</div>
+          <div class="literkiPola">I</div>
+          <div class="literkiPola">J</div>
+        </div>
+        <div id="plansza"></div>
+      </div>
+      <div>
+        <button id="buon" onclick="zmianaPlanszy()" style="display: none">
+          następna runda
+        </button>
+        <button id="gameStart" style="display: none" onclick="zmianaPlanszy()">
+          Zacznij grę
+        </button>
+        <div id="buonContainer">
+          <button class="buon2 jedynka" id="jedynka" onclick="wyborStatku(1)">
+            1
+          </button>
+          <button class="buon2 dwojka" id="dwojka" onclick="wyborStatku(2)">
+            2
+          </button>
+          <button class="buon2 trojka" id="trojka" onclick="wyborStatku(3)">
+            3
+          </button>
+          <button class="buon2 czworka" id="czworka" onclick="wyborStatku(4)">
+            4
+          </button>
+        </div>
+      </div>
+    </div>
     <div id="siurek"></div>
   </body>
   <script src="script.js"></script>

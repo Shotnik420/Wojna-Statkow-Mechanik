@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap");
 
 * {
   margin: 0;
@@ -12,15 +12,20 @@ body {
 }
 
 #plansza {
-  background-color: black(163, 37, 134);
+  background-image: url(https://2minutetabletop.com/wp-content/uploads/2019/04/Ocean-sea-water-tile-texture-map-assets-night.jpg);
+  background-size: 150%;
+  animation: animacjaWody 25s infinite linear;
+  background-repeat: no-repeat;
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   grid-template-rows: repeat(10, 1fr);
-  gap: 3px;
+  /* gap: 3px; */
   z-index: 0;
 }
 .pole {
-  background-color: white;
+  /* background-color: rgb(91, 75, 75); */
+  border: 1px solid black;
+  border-collapse: collapse;
 }
 #matkaPlansza {
   width: 80vh;
@@ -29,15 +34,21 @@ body {
   display: grid;
   grid-template-columns: 1fr 10fr;
   grid-template-rows: 1fr 10fr;
-  gap: 3px;
   grid-template-areas:
     "holder liczby"
     "literki plansza";
   border: 3px solid black;
 }
 
+#buonContainer {
+  width: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
 #holder {
-  background-color: rgb(43, 226, 95);
+  background-color: rgb(26, 25, 25);
   aspect-ratio: 1/1;
 }
 #liczby {
@@ -46,21 +57,22 @@ body {
 
   display: grid;
   grid-template-columns: repeat(10, 1fr);
-  gap: 3px;
 }
 .liczbyPola {
   display: flex;
-  background-color: yellow;
+  background-color: rgb(53, 53, 53);
+  color: white;
   text-align: center;
   justify-content: center;
   align-items: center;
+  border: 1.5px solid black;
 }
 #literki {
   grid-area: literki;
   background-color: black;
   display: grid;
   grid-template-rows: repeat(10, 1fr);
-  gap: 3px;
+  /* gap: 3px; */
 }
 
 #siurek {
@@ -80,7 +92,10 @@ body {
 .literkiPola {
   display: grid;
   place-items: center;
-  background-color: aqua;
+  background-color: rgb(28, 28, 28);
+  color: white;
+  border: 1.5px solid black;
+  border-collapse: collapse;
 }
 .liczbyPola,
 .literkiPola {
@@ -88,7 +103,7 @@ body {
   overflow: hidden;
 }
 
-#onHold1{
+#onHold1 {
   width: 100vw;
   height: 100vh;
   position: absolute;
@@ -96,7 +111,7 @@ body {
   z-index: 5;
 }
 
-#onHold1{
+#onHold1 {
   width: 100vw;
   height: 100vh;
   position: absolute;
@@ -108,28 +123,51 @@ body {
   justify-content: space-evenly;
   align-items: center;
 
-  font-family: 'Inter', sans-serif;
-  
+  font-family: "Inter", sans-serif;
 }
-#onHold1--text{
+#onHold1--text {
   color: white;
   font-size: 6vh;
 }
 
-#onHold1--button{
+#onHold1--button {
   height: 5vh;
   width: 22vh;
   text-align: center;
   line-height: 5vh;
   border-radius: 1vh;
   border: 0.1vh solid white;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 3vh;
   color: white;
 }
 
-#onHold1--button:hover{
+#onHold1--button:hover {
   transform: scale(105%);
   background-color: gray;
   cursor: pointer;
+}
+
+#sortownik {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+@keyframes animacjaWody {
+  0% {
+    background-position-x: 0%;
+    background-position-y: 100%;
+  }
+  50% {
+    background-position-x: 100%;
+    background-position-y: 0%;
+  }
+  100% {
+    background-position-x: 0%;
+    background-position-y: 100%;
+  }
 }
