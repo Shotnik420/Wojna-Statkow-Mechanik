@@ -16,6 +16,16 @@ for (i = 0; i < 10; i++) {
       "' class='pole'></div>";
   }
 }
+//Generacja pól gry
+for (i = 0; i < 10; i++) {
+  for (j = 0; j < 10; j++) {
+    document.getElementById("plansza2").innerHTML +=
+      "<div onmouseover='checker(this)' id='R" +
+      plansza[i] +
+      j +
+      "' class='pole2'></div>";
+  }
+}
 //zmienne
 dlugosc = 0;
 xNumber = 0;
@@ -61,6 +71,8 @@ setInterval(() => {
     document.getElementById("buonContainer").style.display = "none";
     document.getElementById("buon").style.display = "none";
     document.getElementById("gameStart").style.display = "block";
+    document.getElementById("matkaPlansza2").style.display = "grid";
+    function safetyOff() {}
   }
 
   RedButton();
@@ -460,4 +472,15 @@ function zmianaPlanszy() {
       document.getElementById(statki2[z]).style.backgroundColor = "gray";
     }
   }
+}
+
+function counterSkip() {
+  counter1 = 0;
+  counter2 = 0;
+  counter3 = 0;
+  counter4 = 0;
+  counter2_1 = 0;
+  counter2_2 = 0;
+  counter2_3 = 0;
+  counter2_4 = 0;
 }

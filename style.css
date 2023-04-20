@@ -9,6 +9,7 @@ body {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  background-color: rgb(79, 79, 79);
 }
 
 #plansza {
@@ -22,11 +23,31 @@ body {
   /* gap: 3px; */
   z-index: 0;
 }
+
+#plansza2 {
+  background-image: url(https://media.tenor.com/NqO231sqojIAAAAM/nerd-emoji-nerd.gif);
+  background-size: 100% 100%;
+
+  background-repeat: no-repeat;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  /* gap: 3px; */
+  z-index: 0;
+}
+
 .pole {
   /* background-color: rgb(91, 75, 75); */
   border: 1px solid black;
   border-collapse: collapse;
 }
+
+.pole2 {
+  /* background-color: rgb(91, 75, 75); */
+  border: 1px solid #a8ce53;
+  border-collapse: collapse;
+}
+
 #matkaPlansza {
   width: 80vh;
   background-color: black;
@@ -39,7 +60,18 @@ body {
     "literki plansza";
   border: 3px solid black;
 }
+#matkaPlansza2 {
+  width: 80vh;
+  background-color: black;
 
+  display: none;
+  grid-template-columns: 1fr 10fr;
+  grid-template-rows: 1fr 10fr;
+  grid-template-areas:
+    "holder liczby"
+    "literki plansza";
+  border: 3px solid black;
+}
 #buonContainer {
   width: 80vh;
   display: flex;
@@ -155,6 +187,12 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
+}
+#playarea {
+  width: 80vw;
+  height: 80vh;
+  display: flex;
+  justify-content: space-around;
 }
 
 @keyframes animacjaWody {
