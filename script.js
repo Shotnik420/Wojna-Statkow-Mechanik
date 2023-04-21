@@ -5,7 +5,8 @@ var statki = [];
 var statki2 = [];
 var statkiGhost = [];
 var statkiGhost2 = [];
-
+var strzaly = [];
+var rakiety = 3;
 //Generacja pól gry
 for (i = 0; i < 10; i++) {
   for (j = 0; j < 10; j++) {
@@ -20,7 +21,7 @@ for (i = 0; i < 10; i++) {
 for (i = 0; i < 10; i++) {
   for (j = 0; j < 10; j++) {
     document.getElementById("plansza2").innerHTML +=
-      "<div onmouseover='checker(this)' id='R" +
+      "<div onclick='strzal(this)' onmouseover='checker2(this)' id='R" +
       plansza[i] +
       j +
       "' class='pole2'></div>";
@@ -115,6 +116,47 @@ function checker(ele) {
       xNumber = j;
     }
   }
+}
+
+function checker2(ele) {
+  Rid = ele.id;
+  
+}
+
+function strzal(ele){
+  
+  
+  if(document.getElementById(Rid).style.backgroundImage == 'url("./img/cel.png")'
+  ){
+    document.getElementById(Rid).style.backgroundImage = "none";
+    for (let n = 0; n<strzaly.length; n++){
+      if(strzaly[n] ==Rid){
+        strzaly.splice(n, 1)
+      }
+    }
+    rakiety++;
+  }else{
+    if(rakiety>0){
+    document.getElementById(Rid).style.backgroundImage = "url(./img/cel.png)";
+    
+    rakiety--;
+    strzaly.push(Rid);
+    }
+  }
+
+  
+
+}
+
+function pal(){
+ for(let s= 0; s<strzaly.length; s++){
+   let Sx = strzaly[s].charAt(1);
+   let Sy = strzaly[s].charAt(2);
+   console.log(Sx +Sy)
+   if(statki2.includes(Sx+Sy)){
+    console.log("BAM")
+   }
+}
 }
 
 // Wybor wielkosci statku
