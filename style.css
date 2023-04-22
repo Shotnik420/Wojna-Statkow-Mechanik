@@ -46,6 +46,8 @@ body {
   /* background-color: rgb(91, 75, 75); */
   border: 1px solid #a8ce53;
   border-collapse: collapse;
+  background-size: 100% 100%;
+  cursor: pointer;
 }
 
 #matkaPlansza {
@@ -90,6 +92,7 @@ body {
   display: grid;
   grid-template-columns: repeat(10, 1fr);
 }
+
 .liczbyPola {
   display: flex;
   background-color: rgb(53, 53, 53);

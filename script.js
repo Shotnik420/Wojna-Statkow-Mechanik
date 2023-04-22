@@ -6,7 +6,10 @@ var statki2 = [];
 var statkiGhost = [];
 var statkiGhost2 = [];
 var strzaly = [];
-var rakiety = 3;
+var strzalyMem = [];
+var strzalyMem2 = [];
+var rakiety = 0;
+
 //Generacja pól gry
 for (i = 0; i < 10; i++) {
   for (j = 0; j < 10; j++) {
@@ -17,7 +20,7 @@ for (i = 0; i < 10; i++) {
       "' class='pole'></div>";
   }
 }
-//Generacja pól gry
+//Generacja pól radaru
 for (i = 0; i < 10; i++) {
   for (j = 0; j < 10; j++) {
     document.getElementById("plansza2").innerHTML +=
@@ -27,6 +30,7 @@ for (i = 0; i < 10; i++) {
       "' class='pole2'></div>";
   }
 }
+
 //zmienne
 dlugosc = 0;
 xNumber = 0;
@@ -42,6 +46,33 @@ counter2_3 = 2;
 counter2_2 = 3;
 counter2_1 = 4;
 
+killmode = 0;
+
+var areWeGood = 1;
+
+//Szybkie wytłumaczenie radaru, więcej info znajdziecie w poszczególnych funkcjach
+//Dodana funkcja CEL() oraz PAL() i duże zmiany w ZMIENPLANSZE()
+//Cel wpisuje cele do tymczasowej tabeli strzaly[]
+//Pal je "Wystrzela" i sprawdza czy trafiły oraz printuje grafike efektu
+//W zmianach tabel przed faktyczną zmianą wszystkie strzały z tej rundy są wpychane do StrzalyMem[], lub StrzalyMem2[], skąd są pobierane podczas zmiany chuj dupa ejejejejejej
+//Taka żipka dla habibiego
+// ░░░░░▄▄▄▄▀▀▀▀▀▀▀▀▄▄▄▄▄▄░░░░░░░
+// ░░░░░█░░░░▒▒▒▒▒▒▒▒▒▒▒▒░░▀▀▄░░░░
+// ░░░░█░░░▒▒▒▒▒▒░░░░░░░░▒▒▒░░█░░░
+// ░░░█░░░░░░▄██▀▄▄░░░░░▄▄▄░░░░█░░
+// ░▄▀▒▄▄▄▒░█▀▀▀▀▄▄█░░░██▄▄█░░░░█░
+// █░▒█▒▄░▀▄▄▄▀░░░░░░░░█░░░▒▒▒▒▒░█
+// █░▒█░█▀▄▄░░░░░█▀░░░░▀▄░░▄▀▀▀▄▒█
+// ░█░▀▄░█▄░█▀▄▄░▀░▀▀░▄▄▀░░░░█░░█░
+// ░░█░░░▀▄▀█▄▄░█▀▀▀▄▄▄▄▀▀█▀██░█░░
+// ░░░█░░░░██░░▀█▄▄▄█▄▄█▄████░█░░░
+// ░░░░█░░░░▀▀▄░█░░░█░█▀██████░█░░
+// ░░░░░▀▄░░░░░▀▀▄▄▄█▄█▄█▄█▄▀░░█░░
+// ░░░░░░░▀▄▄░▒▒▒▒░░░░░░░░░░▒░░░█░
+// ░░░░░░░░░░▀▀▄▄░▒▒▒▒▒▒▒▒▒▒░░░░█░
+// ░░░░░░░░░░░░░░▀▄▄▄▄▄░░░░░░░░█░░
+//HAVE FUN
+
 setInterval(() => {
   if (
     counter1 == 0 &&
@@ -50,6 +81,7 @@ setInterval(() => {
     counter4 == 0 &&
     lista == 1
   ) {
+    document.getElementById("zatwierdz").style.display = "block";
     document.getElementById("buonContainer").style.display = "none";
     document.getElementById("buon").style.display = "block";
   } else if (
@@ -69,11 +101,12 @@ setInterval(() => {
     counter2_4 == 0 &&
     lista == 2
   ) {
+    document.getElementById("zatwierdz").style.display = "block";
     document.getElementById("buonContainer").style.display = "none";
     document.getElementById("buon").style.display = "none";
     document.getElementById("gameStart").style.display = "block";
     document.getElementById("matkaPlansza2").style.display = "grid";
-    function safetyOff() {}
+    killmode = 1;
   }
 
   RedButton();
@@ -118,45 +151,98 @@ function checker(ele) {
   }
 }
 
+//Ustawienie ID komórki radaru
 function checker2(ele) {
   Rid = ele.id;
-  
 }
 
-function strzal(ele){
-  
-  
-  if(document.getElementById(Rid).style.backgroundImage == 'url("./img/cel.png")'
-  ){
+//CELOWANIE, nie faktyczny strzał
+function strzal(ele) {
+  if (
+    //jeżeli już jest cel ustawiony na polu
+    document.getElementById(Rid).style.backgroundImage == 'url("./img/cel.png")'
+  ) {
+    //zdejmujemy jego teksture
     document.getElementById(Rid).style.backgroundImage = "none";
-    for (let n = 0; n<strzaly.length; n++){
-      if(strzaly[n] ==Rid){
-        strzaly.splice(n, 1)
+    //odejmujemy jego id z listy strzałow
+    for (let n = 0; n < strzaly.length; n++) {
+      if (strzaly[n] == Rid) {
+        strzaly.splice(n, 1);
       }
     }
+    //dodajemy rakiete z powrotem
     rakiety++;
-  }else{
-    if(rakiety>0){
-    document.getElementById(Rid).style.backgroundImage = "url(./img/cel.png)";
-    
-    rakiety--;
-    strzaly.push(Rid);
+  } else {
+    //jeżeli pole jest puste
+    if (rakiety > 0) {
+      //nadajemy teksture celu
+      document.getElementById(Rid).style.backgroundImage = "url(./img/cel.png)";
+      //odejmuje rakiete i pushujemy ID komórki do strzalów
+      rakiety--;
+      strzaly.push(Rid);
     }
   }
-
-  
-
 }
+//Strzały and shit idk zrobione po jednym (1) leszku free i 1 (jednym) captain jacku.
+function pal() {
+  //która lista jest on?
+  if (lista == 2) {
+    //Czy rakiety są zdepletowane?
+    if (rakiety == 0) {
+      //Sprawdźmy trafienia, poniższy kod działa na każdy rekord w tabeli 'strzały'.
+      for (let s = 0; s < strzaly.length; s++) {
+        //Wyciągam 2 i 3 litere z RID komórki radaru
+        let Sx = strzaly[s].charAt(1);
+        let Sy = strzaly[s].charAt(2);
 
-function pal(){
- for(let s= 0; s<strzaly.length; s++){
-   let Sx = strzaly[s].charAt(1);
-   let Sy = strzaly[s].charAt(2);
-   console.log(Sx +Sy)
-   if(statki2.includes(Sx+Sy)){
-    console.log("BAM")
-   }
-}
+        //Zmiana na powiedzmy "bufor" animacje
+        document.getElementById(strzaly[s]).style.backgroundImage =
+          "url(./img/pal.png)";
+
+        //opóźnienie na 2 sekundy
+        setTimeout(function () {
+          //Przyrównuje wyciągniete ID do tabeli statków
+          if (statki.includes(Sx + Sy)) {
+            //Trafiłem
+            document.getElementById(strzaly[s]).style.backgroundImage =
+              "url(./img/bam.png)";
+          } else {
+            //Nie trafiłem
+            document.getElementById(strzaly[s]).style.backgroundImage =
+              "url(./img/pudlo.png)";
+          }
+        }, 2000);
+      }
+      //Możemy przekazać gre przeciwnikowi
+      areWeGood = 1;
+    } else {
+      //Gracz ma powyżej zeru rakiet
+      alert("Wykorzystaj wszystkie pociski!");
+    }
+  } //kopia dla listy pierwszej nie bede już pisał niżej
+  else {
+    if (rakiety == 0) {
+      for (let s = 0; s < strzaly.length; s++) {
+        let Sx = strzaly[s].charAt(1);
+        let Sy = strzaly[s].charAt(2);
+
+        document.getElementById(strzaly[s]).style.backgroundImage =
+          "url(./img/pal.png)";
+        setTimeout(function () {
+          if (statki2.includes(Sx + Sy)) {
+            document.getElementById(strzaly[s]).style.backgroundImage =
+              "url(./img/bam.png)";
+          } else {
+            document.getElementById(strzaly[s]).style.backgroundImage =
+              "url(./img/pudlo.png)";
+          }
+        }, 2000);
+      }
+      areWeGood = 1;
+    } else {
+      alert("Wykorzystaj wszystkie pociski!");
+    }
+  }
 }
 
 // Wybor wielkosci statku
@@ -396,7 +482,7 @@ function dodajStatek() {
           }
         }
         //obrot statku pionowy
-
+        //Miro ma małego chuja lol
         if (dodajStatekCounter2 == dlugosc) {
           killer();
           if (rotateShip == 0) {
@@ -493,30 +579,138 @@ function killer() {
 }
 lista = 1;
 var zmianaPlanszyCounter = 0;
+
 function zmianaPlanszy() {
-  if (lista == 1) {
-    lista++;
-  } else if (lista == 2) {
-    lista--;
-  }
-  myElement = document.getElementById("plansza");
+  //Jesteśmy gotowi na zmiane planszy!
+  if (areWeGood == 1) {
+    //Jest już gra ofensywna czy jeszcze ustawianie statków?
 
-  for (child of myElement.children) {
-    child.style.backgroundColor = "rgba(0, 0, 0, 0)";
-  }
+    //Już strzelamy:
+    if (killmode == 1) {
+      //Wymażmy wszystkie pola
+      var kratkiRadaru = document.querySelectorAll(".pole2");
+      kratkiRadaru.forEach(
+        (element) => (element.style.backgroundImage = "none")
+      );
 
-  if (lista == 1) {
-    for (let z = 0; z < statki.length; z++) {
-      document.getElementById(statki[z]).style.backgroundColor = "gray";
+      //Jeżeli lista 2
+      if (lista == 2) {
+        //Zapiszmy strzały z tej rundy do memory
+        for (let i = 0; i < strzaly.length; i++) {
+          strzalyMem2.push(strzaly[i]);
+        }
+        //Mamy już zapisane.
+        //Usuńmy wszystkie strzały z tymczasowej pamięci.
+        strzaly.splice(0, strzaly.length);
+
+        //Printujemy wszystkie strzały z pamięci przeciwnika i sprawdzamy które trafione na podstawie kodu zapisanego w Funckcji Pal()
+        for (let i = 0; i < strzalyMem.length; i++) {
+          let Sx = strzalyMem[i].charAt(1);
+          let Sy = strzalyMem[i].charAt(2);
+          if (statki.includes(Sx + Sy)) {
+            document.getElementById(strzalyMem[i]).style.backgroundImage =
+              'url("./img/bam.png")';
+          } else {
+            document.getElementById(strzalyMem[i]).style.backgroundImage =
+              'url("./img/pudlo.png")';
+          }
+        }
+      }
+      //Jeżeli lista 1
+      else {
+        //Zapiszmy strzały z tej rundy do memory
+        for (let i = 0; i < strzaly.length; i++) {
+          strzalyMem.push(strzaly[i]);
+        }
+        //Mamy już zapisane.
+        //Usuńmy wszystkie strzały z tymczasowej pamięci.
+        strzaly.splice(0, strzaly.length);
+
+        //Printujemy wszystkie strzały z pamięci przeciwnika i sprawdzamy które trafione na podstawie kodu zapisanego w Funckcji Pal()
+        for (let i = 0; i < strzalyMem2.length; i++) {
+          let Sx = strzalyMem2[i].charAt(1);
+          let Sy = strzalyMem2[i].charAt(2);
+          if (statki.includes(Sx + Sy)) {
+            document.getElementById(strzalyMem2[i]).style.backgroundImage =
+              'url("./img/bam.png")';
+          } else {
+            document.getElementById(strzalyMem2[i]).style.backgroundImage =
+              'url("./img/pudlo.png")';
+          }
+        }
+      }
     }
-  } else if (lista == 2) {
-    for (let z = 0; z < statki2.length; z++) {
-      document.getElementById(statki2[z]).style.backgroundColor = "gray";
+
+    //Jeszcze nie strzelamy, albo już skończyliśmy
+    if (lista == 1) {
+      rakiety = 3;
+      lista++;
+    } else if (lista == 2) {
+      rakiety = 3;
+      lista--;
+    }
+    myElement = document.getElementById("plansza");
+
+    for (child of myElement.children) {
+      child.style.backgroundColor = "rgba(0, 0, 0, 0)";
+    }
+
+    if (lista == 1) {
+      for (let z = 0; z < statki.length; z++) {
+        document.getElementById(statki[z]).style.backgroundColor = "gray";
+      }
+    } else if (lista == 2) {
+      for (let z = 0; z < statki2.length; z++) {
+        document.getElementById(statki2[z]).style.backgroundColor = "gray";
+      }
     }
   }
+  //Zmiana planszy skończona, czekamy aż gracz zatwierdzi strzały aby ponownie zmienić plansze.
+  areWeGood = 0;
 }
 
-function counterSkip() {
+function imuplse() {
+  statki.push(
+    "H1",
+    "H2",
+    "H3",
+    "H4",
+    "E4",
+    "E5",
+    "C1",
+    "C2",
+    "C3",
+    "B5",
+    "B6",
+    "J1",
+    "J2",
+    "J3",
+    "G6",
+    "G7",
+    "D7",
+    "E9",
+    "C9",
+    "A9"
+  );
+  statki2.push(
+    "H1",
+    "H2",
+    "H3",
+    "H4",
+    "E4",
+    "E5",
+    "B5",
+    "B6",
+    "J1",
+    "J2",
+    "J3",
+    "G6",
+    "G7",
+    "D7",
+    "E9",
+    "C9",
+    "A9"
+  );
   counter1 = 0;
   counter2 = 0;
   counter3 = 0;
