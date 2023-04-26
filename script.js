@@ -9,6 +9,8 @@ var strzaly = [];
 var strzalyMem = [];
 var strzalyMem2 = [];
 var rakiety = 0;
+var brokenStatki = [];
+var brokenStatki2 = [];
 
 //Generacja pól gry
 for (i = 0; i < 10; i++) {
@@ -24,13 +26,15 @@ for (i = 0; i < 10; i++) {
 for (i = 0; i < 10; i++) {
   for (j = 0; j < 10; j++) {
     document.getElementById("plansza2").innerHTML +=
-      "<div onclick='strzal(this)' onmouseover='checker2(this)' id='R" +
+      "<div onclick='cel(this)' onmouseover='checker2(this)' id='R" +
       plansza[i] +
       j +
       "' class='pole2'></div>";
   }
 }
-
+setInterval(() => {
+  document.getElementById("rocketCounter").innerHTML = rakiety;
+}, 200);
 //zmienne
 dlugosc = 0;
 xNumber = 0;
@@ -81,9 +85,8 @@ setInterval(() => {
     counter4 == 0 &&
     lista == 1
   ) {
-    document.getElementById("zatwierdz").style.display = "block";
     document.getElementById("buonContainer").style.display = "none";
-    document.getElementById("buon").style.display = "block";
+    document.getElementById("fightContainer").style.display = "block";
   } else if (
     counter2_1 == 4 &&
     counter2_2 == 3 &&
@@ -92,7 +95,7 @@ setInterval(() => {
     lista == 2
   ) {
     document.getElementById("buonContainer").style.display = "block";
-    document.getElementById("buon").style.display = "none";
+    document.getElementById("fightContainer").style.display = "none";
   }
   if (
     counter2_1 == 0 &&
@@ -101,10 +104,8 @@ setInterval(() => {
     counter2_4 == 0 &&
     lista == 2
   ) {
-    document.getElementById("zatwierdz").style.display = "block";
     document.getElementById("buonContainer").style.display = "none";
-    document.getElementById("buon").style.display = "none";
-    document.getElementById("gameStart").style.display = "block";
+    document.getElementById("fightContainer").style.display = "block";
     document.getElementById("matkaPlansza2").style.display = "grid";
     killmode = 1;
   }
@@ -157,7 +158,7 @@ function checker2(ele) {
 }
 
 //CELOWANIE, nie faktyczny strzał
-function strzal(ele) {
+function cel(ele) {
   if (
     //jeżeli już jest cel ustawiony na polu
     document.getElementById(Rid).style.backgroundImage == 'url("./img/cel.png")'
@@ -206,6 +207,7 @@ function pal() {
             //Trafiłem
             document.getElementById(strzaly[s]).style.backgroundImage =
               "url(./img/bam.png)";
+            brokenStatki.push(Sx + Sy);
           } else {
             //Nie trafiłem
             document.getElementById(strzaly[s]).style.backgroundImage =
@@ -232,6 +234,7 @@ function pal() {
           if (statki2.includes(Sx + Sy)) {
             document.getElementById(strzaly[s]).style.backgroundImage =
               "url(./img/bam.png)";
+            brokenStatki2.push(Sx + Sy);
           } else {
             document.getElementById(strzaly[s]).style.backgroundImage =
               "url(./img/pudlo.png)";
@@ -556,7 +559,7 @@ function dodajStatek() {
 
         counter2 = 1;
       }
-      document.querySelector("#buon").style.backgroundColor = "green";
+
       document.querySelector("#siurek").style.opacity = 0;
     });
   }
@@ -659,9 +662,16 @@ function zmianaPlanszy() {
       for (let z = 0; z < statki.length; z++) {
         document.getElementById(statki[z]).style.backgroundColor = "gray";
       }
+      for (let h = 0; h < brokenStatki.length; h++) {
+        document.getElementById(brokenStatki[h]).style.backgroundColor = "red";
+      }
     } else if (lista == 2) {
       for (let z = 0; z < statki2.length; z++) {
         document.getElementById(statki2[z]).style.backgroundColor = "gray";
+      }
+      for (let h = 0; h < brokenStatki.length; h++) {
+        document.getElementById(brokenStatki2[h]).style.backgroundColor =
+          "blue";
       }
     }
   }
@@ -669,7 +679,7 @@ function zmianaPlanszy() {
   areWeGood = 0;
 }
 
-function imuplse() {
+function killthem() {
   statki.push(
     "H1",
     "H2",

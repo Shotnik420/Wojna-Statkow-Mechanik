@@ -76,13 +76,18 @@
         </div>
       </div>
       <div>
-        <button id="buon" onclick="zmianaPlanszy()" style="display: none">
-          następna runda
-        </button>
-        <button id="gameStart" style="display: none" onclick="zmianaPlanszy()">
-          Zacznij grę
-        </button>
-        <button id="zatwierdz" onclick="pal()">Zatwierdz</button>
+        <div id="fightContainer">
+          <button id="next" onclick="zmianaPlanszy()">następna runda</button>
+          <button
+            id="gameStart"
+            style="display: none"
+            onclick="zmianaPlanszy()"
+          >
+            Zacznij grę
+          </button>
+          <button id="zatwierdz" onclick="pal()">Zatwierdz</button>
+          <p>Rakiety: <span id="rocketCounter">3</span></p>
+        </div>
         <div id="buonContainer">
           <button class="buon2 jedynka" id="jedynka" onclick="wyborStatku(1)">
             1
