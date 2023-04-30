@@ -834,3 +834,28 @@ setInterval(() => {
     document.getElementById("buonContainer").style.display = "none";
   }
 }, 100);
+
+function gameMode(x) {
+  Multi = document.getElementById("multi");
+  Local = document.getElementById("local");
+  Jebac = document.getElementById("jebac");
+
+  console.log(x);
+  switch (x) {
+    case 0:
+      Multi.style.display = "none";
+      Local.style.display = "none";
+      Jebac.style.display = "block";
+      break;
+    case 1:
+      Multi.style.display = "none";
+      Local.style.display = "block";
+      Jebac.style.display = "none";
+      break;
+    case 2:
+      Multi.style.display = "block";
+      Local.style.display = "none";
+      Jebac.style.display = "none";
+      break;
+  }
+}

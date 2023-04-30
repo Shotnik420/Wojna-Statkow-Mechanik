@@ -10,8 +10,19 @@
   <body>
     <div id="mainMenu">
       <img src="/img/logo.png" />
+      <div id="jebac">
+        <button onclick="gameMode(1)" class="menuButton">Lokalnie</button>
+        <button onclick="gameMode(2)" class="menuButton">Online</button>
+      </div>
+
       <div id="local">
-        <button onclick="startGame()">Zacznij grać</button>
+        <button onclick="gameMode(0)" class="menuButton">Wroc</button>
+        <button onclick="startGame()">Zacznij gre</button>
+      </div>
+      <div id="multi">
+        <button onclick="gameMode(0)" class="menuButton">Wroc</button>
+        <button onclick="startGame()">Gracz 1</button>
+        <button onclick="startGame()">Gracz 2</button>
       </div>
       <img src="/img/bababooya.jpg" />
     </div>
