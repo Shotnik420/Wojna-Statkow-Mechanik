@@ -11,26 +11,35 @@
     <div id="mainMenu">
       <img src="/img/logo.png" />
       <div id="jebac">
+        <h1>Wybierz rodzaj rozgrywki</h1>
         <button onclick="gameMode(1)" class="menuButton">Lokalnie</button>
         <button onclick="gameMode(2)" class="menuButton">Online</button>
       </div>
 
       <div id="local">
-        <button onclick="gameMode(0)" class="menuButton">Wroc</button>
+        <button onclick="gameMode(0)" class="back">Wroc</button>
         <button onclick="startGame()">Zacznij gre</button>
       </div>
       <div id="multi">
-        <button onclick="gameMode(0)" class="menuButton">Wroc</button>
+        <button onclick="gameMode(0)" class="back">Wroc</button>
         <button onclick="startGame()">Gracz 1</button>
         <button onclick="startGame()">Gracz 2</button>
       </div>
       <img src="/img/bababooya.jpg" />
     </div>
-    <!-- <div id="onHold1">
-      <div id="onHold1--text">Przekaż grę 2 graczowi</div>
-      <div id="onHold1--button" onClick="">Potwierdzam</div>
+    <div id="onHold1">
+      <div id="onHold1--text">Przekaż grę drugiemu graczowi</div>
+      <div id="onHold1--button" onClick="zmianaPlanszy()">Potwierdzam</div>
     </div>
-    <div id="onHold2"></div> -->
+    <div id="onHold2">
+      <div id="onHold1--text">Przekaż grę pierwszemu graczowi</div>
+      <div id="onHold1--button" onClick="zmianaPlanszy()">Potwierdzam</div>
+    </div>
+    <div id="onHold3">
+      <div id="onHold1--text">Wygrał <span id="ktory"></span> Gracz</div>
+      <div id="onHold1--button" onClick="window.location.reload()">Wróc do menu</div>
+    </div>
+    
     <div id="sortownik">
       <div id="playarea">
         <div id="matkaPlansza">
@@ -95,12 +104,14 @@
       </div>
       <div>
         <div id="fightContainer">
-          <button id="gameStart" onclick="zmianaPlanszy()">Kontynuuj</button>
-          <button id="zatwierdz" onclick="pal()">Zatwierdz</button>
-          <p>Rakiety: <span id="rocketCounter">3</span></p>
+          <button class="buon2" onclick="holUp()">Kontynuuj</button>
+          <button class="buon2" onclick="pal()">Zatwierdz</button>
+          <img id="boobies" src="./img/missle.png"/> <span id="rocketCounter">3</span></p>
+          <div id="fCounter"></div>
+          <div id="eCounter"></div>
         </div>
         <div id="buonContainer">
-          <button id="next" onclick="zmianaPlanszy()">Kontynuuj</button>
+          <button class="buon2" onclick="holUp()">Kontynuuj</button>
           <button class="buon2 jedynka" id="jedynka" onclick="wyborStatku(1)">
             1
           </button>
@@ -116,6 +127,7 @@
         </div>
       </div>
     </div>
+
     <div id="siurek"></div>
     <button id="FUCKYOU">Send nudle</button>
 

@@ -237,7 +237,7 @@ function pal() {
         //Wyciągam 2 i 3 litere z RID komórki radaru
         let Sx = strzaly[s].charAt(1);
         let Sy = strzaly[s].charAt(2);
-
+        shotsFired();
         //Zmiana na powiedzmy "bufor" animacje
         document.getElementById(strzaly[s]).style.backgroundImage =
           "url(./img/pal.png)";
@@ -255,7 +255,7 @@ function pal() {
             document.getElementById(strzaly[s]).style.backgroundImage =
               "url(./img/pudlo.png)";
           }
-        }, 2000);
+        }, 4000);
       }
       //Możemy przekazać gre przeciwnikowi
       areWeGood = 1;
@@ -269,7 +269,7 @@ function pal() {
       for (let s = 0; s < strzaly.length; s++) {
         let Sx = strzaly[s].charAt(1);
         let Sy = strzaly[s].charAt(2);
-
+        shotsFired();
         document.getElementById(strzaly[s]).style.backgroundImage =
           "url(./img/pal.png)";
         setTimeout(function () {
@@ -281,7 +281,7 @@ function pal() {
             document.getElementById(strzaly[s]).style.backgroundImage =
               "url(./img/pudlo.png)";
           }
-        }, 2000);
+        }, 4000);
       }
       areWeGood = 1;
     } else {
@@ -638,6 +638,8 @@ lista = 1;
 var zmianaPlanszyCounter = 0;
 
 function zmianaPlanszy() {
+  document.getElementById("onHold1").style.display = "none";
+  document.getElementById("onHold2").style.display = "none";
   //Jesteśmy gotowi na zmiane planszy!
   if (areWeGood == 1) {
     //Zaczynamy! Blokuję zmianę planszy
@@ -825,6 +827,8 @@ setInterval(() => {
     document.getElementById("matkaPlansza").style.display = "none";
     document.getElementById("fightContainer").style.display = "none";
     document.getElementById("buonContainer").style.display = "none";
+    document.getElementById("ktory").innerHTML = lista;
+    document.getElementById("onHold3").style.display = "flex";
     console.log("win 2");
   } else if (brokenStatki2.length >= 20) {
     console.log("win 1");
@@ -832,7 +836,15 @@ setInterval(() => {
     document.getElementById("matkaPlansza").style.display = "none";
     document.getElementById("fightContainer").style.display = "none";
     document.getElementById("buonContainer").style.display = "none";
+    document.getElementById("ktory").innerHTML = lista;
+    document.getElementById("onHold3").style.display = "flex";
   }
+  document.getElementById("fCounter").innerHTML = parseInt(
+    20 - brokenStatki.length
+  );
+  document.getElementById("eCounter").innerHTML = parseInt(
+    20 - brokenStatki2.length
+  );
 }, 100);
 
 function gameMode(x) {
@@ -845,17 +857,42 @@ function gameMode(x) {
     case 0:
       Multi.style.display = "none";
       Local.style.display = "none";
-      Jebac.style.display = "block";
+      Jebac.style.display = "flex";
+
       break;
     case 1:
       Multi.style.display = "none";
-      Local.style.display = "block";
+      Local.style.display = "flex";
       Jebac.style.display = "none";
       break;
     case 2:
-      Multi.style.display = "block";
+      Multi.style.display = "flex";
       Local.style.display = "none";
       Jebac.style.display = "none";
       break;
+  }
+}
+
+function holUp() {
+  if (areWeGood == 1) {
+    Uno = document.getElementById("onHold1");
+    Duo = document.getElementById("onHold2");
+    switch (lista) {
+      case 1:
+        Uno.style.display = "flex";
+        break;
+      case 2:
+        Duo.style.display = "flex";
+        break;
+    }
+  }
+}
+
+function shotsFired() {
+  for (let i = 0; i < strzaly.length; i++) {
+    var strzelecID = strzaly[i];
+    var Stx = strzelecID.charAt(1);
+    var Sty = strzelecID.charAt(2);
+    document.getElementById(Stx + Sty).innerHTML += "<div  id='missle' />";
   }
 }
