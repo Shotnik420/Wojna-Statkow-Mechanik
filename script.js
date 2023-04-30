@@ -52,7 +52,11 @@ counter2_1 = 4;
 
 killmode = 0;
 
-var areWeGood = 1;
+areWeGood = 0;
+
+rakietyCap = 0;
+
+weGame = 0;
 
 //Szybkie wytłumaczenie radaru, więcej info znajdziecie w poszczególnych funkcjach
 //Dodana funkcja CEL() oraz PAL() i duże zmiany w ZMIENPLANSZE()
@@ -76,8 +80,10 @@ var areWeGood = 1;
 // ░░░░░░░░░░▀▀▄▄░▒▒▒▒▒▒▒▒▒▒░░░░█░
 // ░░░░░░░░░░░░░░▀▄▄▄▄▄░░░░░░░░█░░
 //HAVE FUN
-
-setInterval(() => {
+function startGame() {
+  weGame = 1;
+}
+const setupPhase = setInterval(() => {
   if (
     counter1 == 0 &&
     counter2 == 0 &&
@@ -86,7 +92,8 @@ setInterval(() => {
     lista == 1
   ) {
     document.getElementById("buonContainer").style.display = "none";
-    document.getElementById("fightContainer").style.display = "block";
+    document.getElementById("fightContainer").style.display = "flex";
+    areWeGood = 1;
   } else if (
     counter2_1 == 4 &&
     counter2_2 == 3 &&
@@ -94,8 +101,19 @@ setInterval(() => {
     counter2_4 == 1 &&
     lista == 2
   ) {
-    document.getElementById("buonContainer").style.display = "block";
+    document.getElementById("buonContainer").style.display = "flex";
     document.getElementById("fightContainer").style.display = "none";
+    areWeGood = 0;
+  } else if (
+    counter2_1 == 4 &&
+    counter2_2 == 3 &&
+    counter2_3 == 2 &&
+    counter2_4 == 1 &&
+    lista == 1
+  ) {
+    document.getElementById("buonContainer").style.display = "flex";
+    document.getElementById("fightContainer").style.display = "none";
+    areWeGood = 0;
   }
   if (
     counter2_1 == 0 &&
@@ -105,37 +123,56 @@ setInterval(() => {
     lista == 2
   ) {
     document.getElementById("buonContainer").style.display = "none";
-    document.getElementById("fightContainer").style.display = "block";
-    document.getElementById("matkaPlansza2").style.display = "grid";
-    killmode = 1;
+    document.getElementById("fightContainer").style.display = "flex";
+    stopSetupPhase();
   }
 
   RedButton();
 }, 100);
 function RedButton() {
-  if (counter1 == 0) {
-    document.querySelector(".jedynka").style.backgroundColor = "red";
+  if (lista == 1) {
+    if (counter1 == 0) {
+      document.querySelector(".jedynka").style.backgroundColor = "red";
+    }
+    if (counter2 == 0) {
+      document.querySelector(".dwojka").style.backgroundColor = "red";
+    }
+    if (counter3 == 0) {
+      document.querySelector(".trojka").style.backgroundColor = "red";
+    }
+    if (counter4 == 0) {
+      document.querySelector(".czworka").style.backgroundColor = "red";
+    }
+  } else {
+    if (
+      counter2_4 == 1 &&
+      counter2_3 == 2 &&
+      counter2_2 == 3 &&
+      counter2_1 == 4
+    ) {
+      document.querySelector(".jedynka").style.backgroundColor = "white";
+      document.querySelector(".dwojka").style.backgroundColor = "white";
+      document.querySelector(".trojka").style.backgroundColor = "white";
+      document.querySelector(".czworka").style.backgroundColor = "white";
+    }
+    if (counter2_1 == 0) {
+      document.querySelector(".jedynka").style.backgroundColor = "red";
+    }
+    if (counter2_2 == 0) {
+      document.querySelector(".dwojka").style.backgroundColor = "red";
+    }
+    if (counter2_3 == 0) {
+      document.querySelector(".trojka").style.backgroundColor = "red";
+    }
+    if (counter2_4 == 0) {
+      document.querySelector(".czworka").style.backgroundColor = "red";
+    }
   }
-  if (counter2 == 0) {
-    document.querySelector(".dwojka").style.backgroundColor = "red";
-  }
-  if (counter3 == 0) {
-    document.querySelector(".trojka").style.backgroundColor = "red";
-  }
-  if (counter4 == 0) {
-    document.querySelector(".czworka").style.backgroundColor = "red";
-  }
-  if (
-    counter2_4 == 1 &&
-    counter2_3 == 2 &&
-    counter2_2 == 2 &&
-    counter2_1 == 4
-  ) {
-    document.querySelector(".jedynka").style.backgroundColor = "white";
-    document.querySelector(".dwujka").style.backgroundColor = "white";
-    document.querySelector(".trojka").style.backgroundColor = "white";
-    document.querySelector(".czworka").style.backgroundColor = "white";
-  }
+}
+function stopSetupPhase() {
+  clearInterval(setupPhase);
+  killmode = 1;
+  areWeGood = 1;
 }
 
 // ustalenie pola na którym jest kursor
@@ -173,7 +210,12 @@ function cel(ele) {
     }
     //dodajemy rakiete z powrotem
     rakiety++;
-  } else {
+  } else if (
+    document.getElementById(Rid).style.backgroundImage !==
+      'url("./img/bam.png")' &&
+    document.getElementById(Rid).style.backgroundImage !==
+      'url("./img/pudlo.png")'
+  ) {
     //jeżeli pole jest puste
     if (rakiety > 0) {
       //nadajemy teksture celu
@@ -301,7 +343,7 @@ function wyborStatku(x) {
         dlugosc = 0;
         dodajStatek(2);
         rotateUpdate();
-        alert("wykorzystales juz liczbe tych statkow :<");
+
         return;
     }
   }
@@ -353,6 +395,8 @@ function dodajStatek() {
             } else {
               if (xNumber + dlugosc <= 10) {
                 dodajStatekCounter++;
+              } else {
+                break;
               }
             }
           }
@@ -367,6 +411,8 @@ function dodajStatek() {
             } else {
               if (y + dlugosc <= 10) {
                 dodajStatekCounter++;
+              } else {
+                break;
               }
             }
           }
@@ -446,7 +492,7 @@ function dodajStatek() {
 
         counter = 1;
       }
-      document.querySelector("#buon").style.backgroundColor = "green";
+
       document.querySelector("#siurek").style.opacity = 0;
     });
   } else if (lista == 2) {
@@ -465,9 +511,13 @@ function dodajStatek() {
               dodajStatekCounter2 = 0;
               break;
             } else {
-              dodajStatekCounter2++;
-              switch (true) {
-                case dlugosc == 3:
+              if (xNumber + dlugosc <= 10) {
+                dodajStatekCounter2++;
+                switch (true) {
+                  case dlugosc == 3:
+                }
+              } else {
+                break;
               }
             }
           }
@@ -480,7 +530,11 @@ function dodajStatek() {
               dodajStatekCounter2 = 0;
               break;
             } else {
-              dodajStatekCounter2++;
+              if (y + dlugosc <= 10) {
+                dodajStatekCounter2++;
+              } else {
+                break;
+              }
             }
           }
         }
@@ -586,10 +640,14 @@ var zmianaPlanszyCounter = 0;
 function zmianaPlanszy() {
   //Jesteśmy gotowi na zmiane planszy!
   if (areWeGood == 1) {
+    //Zaczynamy! Blokuję zmianę planszy
+    areWeGood = 0;
     //Jest już gra ofensywna czy jeszcze ustawianie statków?
 
     //Już strzelamy:
     if (killmode == 1) {
+      //Spawn radaru
+      document.getElementById("matkaPlansza2").style.display = "grid";
       //Wymażmy wszystkie pola
       var kratkiRadaru = document.querySelectorAll(".pole2");
       kratkiRadaru.forEach(
@@ -610,7 +668,7 @@ function zmianaPlanszy() {
         for (let i = 0; i < strzalyMem.length; i++) {
           let Sx = strzalyMem[i].charAt(1);
           let Sy = strzalyMem[i].charAt(2);
-          if (statki.includes(Sx + Sy)) {
+          if (statki2.includes(Sx + Sy)) {
             document.getElementById(strzalyMem[i]).style.backgroundImage =
               'url("./img/bam.png")';
           } else {
@@ -642,14 +700,15 @@ function zmianaPlanszy() {
           }
         }
       }
+      //statki zniszczone check
     }
 
     //Jeszcze nie strzelamy, albo już skończyliśmy
     if (lista == 1) {
-      rakiety = 3;
+      rakiety = rakietyCap2;
       lista++;
     } else if (lista == 2) {
-      rakiety = 3;
+      rakiety = rakietyCap;
       lista--;
     }
     myElement = document.getElementById("plansza");
@@ -657,29 +716,27 @@ function zmianaPlanszy() {
     for (child of myElement.children) {
       child.style.backgroundColor = "rgba(0, 0, 0, 0)";
     }
-
-    if (lista == 1) {
-      for (let z = 0; z < statki.length; z++) {
-        document.getElementById(statki[z]).style.backgroundColor = "gray";
-      }
-      for (let h = 0; h < brokenStatki.length; h++) {
-        document.getElementById(brokenStatki[h]).style.backgroundColor = "red";
-      }
-    } else if (lista == 2) {
-      for (let z = 0; z < statki2.length; z++) {
-        document.getElementById(statki2[z]).style.backgroundColor = "gray";
-      }
-      for (let h = 0; h < brokenStatki.length; h++) {
-        document.getElementById(brokenStatki2[h]).style.backgroundColor =
-          "blue";
-      }
+  }
+  if (lista == 1) {
+    for (let z = 0; z < statki.length; z++) {
+      document.getElementById(statki[z]).style.backgroundColor = "gray";
+    }
+    for (let h = 0; h < brokenStatki.length; h++) {
+      document.getElementById(brokenStatki[h]).style.backgroundColor = "red";
+    }
+  } else if (lista == 2) {
+    for (let z = 0; z < statki2.length; z++) {
+      document.getElementById(statki2[z]).style.backgroundColor = "gray";
+    }
+    for (let h = 0; h < brokenStatki2.length; h++) {
+      document.getElementById(brokenStatki2[h]).style.backgroundColor = "blue";
     }
   }
+
   //Zmiana planszy skończona, czekamy aż gracz zatwierdzi strzały aby ponownie zmienić plansze.
-  areWeGood = 0;
 }
 
-function killthem() {
+function deb() {
   statki.push(
     "H1",
     "H2",
@@ -730,3 +787,50 @@ function killthem() {
   counter2_3 = 0;
   counter2_4 = 0;
 }
+
+setInterval(() => {
+  if (weGame == 1) {
+    document.getElementById("sortownik").style.display = "flex";
+    document.getElementById("mainMenu").style.display = "none";
+  } else if (weGame == 0) {
+    document.getElementById("mainMenu").style.display = "flex";
+    document.getElementById("sortownik").style.display = "none";
+  }
+  if (brokenStatki.length == 0) {
+    rakietyCap = 3;
+  } else if (
+    brokenStatki.length == 10 ||
+    brokenStatki.length == 11 ||
+    brokenStatki.length == 12
+  ) {
+    rakietyCap = 2;
+  } else if (brokenStatki.length == 15) {
+    rakietyCap = 1;
+  }
+
+  if (brokenStatki2.length == 0) {
+    rakietyCap2 = 3;
+  } else if (
+    brokenStatki2.length == 10 ||
+    brokenStatki2.length == 11 ||
+    brokenStatki2.length == 12
+  ) {
+    rakietyCap2 = 2;
+  } else if (brokenStatki2.length == 15) {
+    rakietyCap2 = 1;
+  }
+
+  if (brokenStatki.length >= 20) {
+    document.getElementById("matkaPlansza2").style.display = "none";
+    document.getElementById("matkaPlansza").style.display = "none";
+    document.getElementById("fightContainer").style.display = "none";
+    document.getElementById("buonContainer").style.display = "none";
+    console.log("win 2");
+  } else if (brokenStatki2.length >= 20) {
+    console.log("win 1");
+    document.getElementById("matkaPlansza2").style.display = "none";
+    document.getElementById("matkaPlansza").style.display = "none";
+    document.getElementById("fightContainer").style.display = "none";
+    document.getElementById("buonContainer").style.display = "none";
+  }
+}, 100);
