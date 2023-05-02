@@ -18,12 +18,12 @@
 
       <div id="local">
         <button onclick="gameMode(0)" class="back">Wroc</button>
-        <button onclick="startGame()">Zacznij gre</button>
+        <button onclick="startGame(0)">Zacznij gre</button>
       </div>
       <div id="multi">
         <button onclick="gameMode(0)" class="back">Wroc</button>
-        <button onclick="startGame()">Gracz 1</button>
-        <button onclick="startGame()">Gracz 2</button>
+        <button onclick="startGame(1)">Gracz 1</button>
+        <button onclick="startGame(2)">Gracz 2</button>
       </div>
       <img src="/img/bababooya.jpg" />
     </div>
@@ -38,6 +38,10 @@
     <div id="onHold3">
       <div id="onHold1--text">Wygrał <span id="ktory"></span> Gracz</div>
       <div id="onHold1--button" onClick="window.location.reload()">Wróc do menu</div>
+    </div>
+    <div id="onHold4">
+      <div id="onHold1--text">Oczekiwanie na odpowiedź serwera<span id="ktory"></span> Gracz</div>
+      <div id="onHold1--button" class="niggaPlease" onClick="zmianaPlanszy()">Kontynuuj</div>
     </div>
     
     <div id="sortownik">
@@ -111,7 +115,8 @@
           <div id="eCounter"></div>
         </div>
         <div id="buonContainer">
-          <button class="buon2" onclick="holUp()">Kontynuuj</button>
+          <button class="buon2" id="Lnegro"onclick="holUp()">Kontynuuj</button>
+          <button class="buon2" id="negro" onclick="zmianaPlanszy()">Kontynuuj</button>
           <button class="buon2 jedynka" id="jedynka" onclick="wyborStatku(1)">
             1
           </button>
@@ -130,6 +135,7 @@
 
     <div id="siurek"></div>
     <button id="FUCKYOU">Send nudle</button>
+    <button id="FUCKYOU2">Get nudle</button>
 
     <script src="script.js"></script>
 
@@ -164,7 +170,8 @@
       // Initialize Firebase
       const app = initializeApp(firebaseConfig);
       const analytics = getAnalytics(app);
-      document.querySelector("#FUCKYOU").addEventListener("click", poczta);
+      document.querySelector("#FUCKYOU").addEventListener("click", sendData);
+      document.querySelector("#FUCKYOU2").addEventListener("click", getData);
       import {
         getDatabase,
         set,
@@ -172,23 +179,124 @@
         update,
         remove,
         ref,
+        child
       } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-database.js";
       const db = getDatabase();
-
-      function poczta() {
-        var player = "player" + lista;
-
-        set(ref(db, "test"), {
-          Gracz: player,
-          Messag: "Fuck this",
+      document.addEventListener("sendTheData", e =>{
+          sendData();
+        })
+        document.addEventListener("getThePlayer", e =>{
+          getPlayer();
+        })
+      function sendData () {
+        set(ref(db, "Game"), {
+          Gracz: 2,
+          Statki1: [statki],
+          Statki2: [statki2],
+          StatkiGhost1: [statkiGhost],
+          StatkiGhost2: [statkiGhost2],
+          StrzalyMem: [strzalyMem ],
+          StrzalyMem2: [strzalyMem2 ],
+          BrokenStatki: [brokenStatki],
+          BrokenStatki2: [brokenStatki2],
+          Counter1: counter1,
+          Counter2: counter2,
+          Counter3: counter3,
+          Counter4: counter4,
+          Counter2_1: counter2_1,
+          Counter2_2: counter2_2,
+          Counter2_3: counter2_3,
+          Counter2_4: counter2_4,
+         
         })
           .then(() => {
-            alert("Potwierdzam przesłanie");
+            console.log("pakiet wysłany");
+            return false;
           })
           .catch((error) => {
             alert(error);
           });
+
+        
       }
+      function getPlayer(){
+        const duparef = ref(db)
+        get(child(duparef, "Game/Gracz")).then((snapshot)=>{
+
+          console.log(snapshot.val());
+          whoGames=snapshot.val();
+        })
+      }
+      function getData () {
+        
+        const dbref = ref(db)
+        
+        get(child(dbref, "Game/Statki1/0")).then((snapshot)=>{
+          statki = [];
+          snapshot.forEach(childSnapshot =>{
+            statki.push(childSnapshot.val());
+          })
+        })
+        get(child(dbref, "Game/Statki2/0")).then((snapshot)=>{
+          statki2 = [];
+          snapshot.forEach(childSnapshot =>{
+            statki2.push(childSnapshot.val());
+          })
+        })
+        get(child(dbref, "Game/StrzalyMem/0")).then((snapshot)=>{
+          strzalyMem = [];
+          snapshot.forEach(childSnapshot =>{
+            strzalyMem.push(childSnapshot.val());
+          })
+        })
+        get(child(dbref, "Game/StrzalyMem2/0")).then((snapshot)=>{
+          strzalyMem2 = [];
+          snapshot.forEach(childSnapshot =>{
+            strzalyMem2.push(childSnapshot.val());
+          })
+        })
+        get(child(dbref, "Game/BrokenStatki/0")).then((snapshot)=>{
+          brokenStatki = [];
+          snapshot.forEach(childSnapshot =>{
+            brokenStatki.push(childSnapshot.val());
+          })
+        })
+        get(child(dbref, "Game/BrokenStatki2/0")).then((snapshot)=>{
+          brokenStatki2 = [];
+          snapshot.forEach(childSnapshot =>{
+            brokenStatki2.push(childSnapshot.val());
+          })
+        })
+        get(child(duparef, "Game/Counter1")).then((snapshot)=>{
+        counter1=snapshot.val();
+        })
+        get(child(duparef, "Game/Counter2")).then((snapshot)=>{
+        counter2=snapshot.val();
+        })
+        get(child(duparef, "Game/Counter3")).then((snapshot)=>{
+        counter3=snapshot.val();
+        })
+        get(child(duparef, "Game/Counter4")).then((snapshot)=>{
+        counter4=snapshot.val();
+        })
+        get(child(duparef, "Game/Counter2_1")).then((snapshot)=>{
+        counter2_1=snapshot.val();
+        })
+        get(child(duparef, "Game/Counter2_2")).then((snapshot)=>{
+        counter2_2=snapshot.val();
+        })
+        get(child(duparef, "Game/Counter2_3")).then((snapshot)=>{
+        counter2_3=snapshot.val();
+        })
+        get(child(duparef, "Game/Counter2_4")).then((snapshot)=>{
+        counter2_4=snapshot.val();
+        })
+
+        
+        
+
+      }
+      
     </script>
     <script></script>
   </body>

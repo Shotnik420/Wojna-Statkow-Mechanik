@@ -1,4 +1,4 @@
-//
+//document
 var plansza = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
 
 var statki = [];
@@ -12,6 +12,37 @@ var rakiety = 0;
 var brokenStatki = [];
 var brokenStatki2 = [];
 
+//zmienne
+dlugosc = 0;
+xNumber = 0;
+counter = 0;
+
+counter4 = 1;
+counter3 = 2;
+counter2 = 3;
+counter1 = 4;
+
+counter2_4 = 1;
+counter2_3 = 2;
+counter2_2 = 3;
+counter2_1 = 4;
+
+lista = 1;
+
+killmode = 0;
+
+areWeGood = 0;
+
+rakietyCap = 0;
+
+weGame = 0;
+
+multi = 0;
+
+whoGames = 0;
+
+const wysylamy = new Event("sendTheData");
+const dawajGracza = new Event("getThePlayer");
 //Generacja pól gry
 for (i = 0; i < 10; i++) {
   for (j = 0; j < 10; j++) {
@@ -34,54 +65,59 @@ for (i = 0; i < 10; i++) {
 }
 setInterval(() => {
   document.getElementById("rocketCounter").innerHTML = rakiety;
+
+  //tutaj pulluje suki w tym miejscu
+  if (multi > 0) {
+    document.dispatchEvent(dawajGracza);
+    if (whoGames == lista) {
+      document.querySelector(".niggaPlease").style.display = "flex";
+    } else {
+      holUp();
+      document.querySelector(".niggaPlease").style.display = "none";
+    }
+  }
 }, 200);
-//zmienne
-dlugosc = 0;
-xNumber = 0;
-counter = 0;
 
-counter4 = 1;
-counter3 = 2;
-counter2 = 3;
-counter1 = 4;
+//Sound effects
+function sound(src) {
+  this.sound = document.createElement("audio");
+  this.sound.src = src;
+  this.sound.setAttribute("preload", "auto");
+  this.sound.setAttribute("controls", "none");
+  this.sound.style.display = "none";
+  document.body.appendChild(this.sound);
+  this.play = function () {
+    this.sound.play();
+  };
+  this.stop = function () {
+    this.sound.pause();
+  };
+}
+var explosion = new sound("./sfx/explosion.wav");
+var click = new sound("./sfx/click.wav");
+var blip = new sound("./sfx/blip.wav");
+var hurt = new sound("./sfx/hurt.wav");
 
-counter2_4 = 1;
-counter2_3 = 2;
-counter2_2 = 3;
-counter2_1 = 4;
-
-killmode = 0;
-
-areWeGood = 0;
-
-rakietyCap = 0;
-
-weGame = 0;
-
-//Szybkie wytłumaczenie radaru, więcej info znajdziecie w poszczególnych funkcjach
-//Dodana funkcja CEL() oraz PAL() i duże zmiany w ZMIENPLANSZE()
-//Cel wpisuje cele do tymczasowej tabeli strzaly[]
-//Pal je "Wystrzela" i sprawdza czy trafiły oraz printuje grafike efektu
-//W zmianach tabel przed faktyczną zmianą wszystkie strzały z tej rundy są wpychane do StrzalyMem[], lub StrzalyMem2[], skąd są pobierane podczas zmiany chuj dupa ejejejejejej
-//Taka żipka dla habibiego
-// ░░░░░▄▄▄▄▀▀▀▀▀▀▀▀▄▄▄▄▄▄░░░░░░░
-// ░░░░░█░░░░▒▒▒▒▒▒▒▒▒▒▒▒░░▀▀▄░░░░
-// ░░░░█░░░▒▒▒▒▒▒░░░░░░░░▒▒▒░░█░░░
-// ░░░█░░░░░░▄██▀▄▄░░░░░▄▄▄░░░░█░░
-// ░▄▀▒▄▄▄▒░█▀▀▀▀▄▄█░░░██▄▄█░░░░█░
-// █░▒█▒▄░▀▄▄▄▀░░░░░░░░█░░░▒▒▒▒▒░█
-// █░▒█░█▀▄▄░░░░░█▀░░░░▀▄░░▄▀▀▀▄▒█
-// ░█░▀▄░█▄░█▀▄▄░▀░▀▀░▄▄▀░░░░█░░█░
-// ░░█░░░▀▄▀█▄▄░█▀▀▀▄▄▄▄▀▀█▀██░█░░
-// ░░░█░░░░██░░▀█▄▄▄█▄▄█▄████░█░░░
-// ░░░░█░░░░▀▀▄░█░░░█░█▀██████░█░░
-// ░░░░░▀▄░░░░░▀▀▄▄▄█▄█▄█▄█▄▀░░█░░
-// ░░░░░░░▀▄▄░▒▒▒▒░░░░░░░░░░▒░░░█░
-// ░░░░░░░░░░▀▀▄▄░▒▒▒▒▒▒▒▒▒▒░░░░█░
-// ░░░░░░░░░░░░░░▀▄▄▄▄▄░░░░░░░░█░░
-//HAVE FUN
-function startGame() {
+function startGame(x) {
   weGame = 1;
+  document.getElementById("Lnegro").style.display = "block";
+
+  if (x > 0) {
+    document.getElementById("Lnegro").style.display = "none";
+    document.getElementById("negro").style.display = "block";
+    multi = 1;
+    areWeGood = 1;
+    holUp();
+    areWeGood = 0;
+    switch (x) {
+      case 1:
+        lista = 1;
+        break;
+      case 2:
+        lista = 2;
+        break;
+    }
+  }
 }
 const setupPhase = setInterval(() => {
   if (
@@ -91,8 +127,11 @@ const setupPhase = setInterval(() => {
     counter4 == 0 &&
     lista == 1
   ) {
-    document.getElementById("buonContainer").style.display = "none";
-    document.getElementById("fightContainer").style.display = "flex";
+    if (killmode == 1) {
+      document.getElementById("buonContainer").style.display = "none";
+      document.getElementById("fightContainer").style.display = "flex";
+    }
+
     areWeGood = 1;
   } else if (
     counter2_1 == 4 &&
@@ -122,13 +161,16 @@ const setupPhase = setInterval(() => {
     counter2_4 == 0 &&
     lista == 2
   ) {
-    document.getElementById("buonContainer").style.display = "none";
-    document.getElementById("fightContainer").style.display = "flex";
+    if (killmode == 1) {
+      document.getElementById("buonContainer").style.display = "none";
+      document.getElementById("fightContainer").style.display = "flex";
+    }
+
     stopSetupPhase();
   }
 
   RedButton();
-}, 100);
+}, 200);
 function RedButton() {
   if (lista == 1) {
     if (counter1 == 0) {
@@ -209,6 +251,7 @@ function cel(ele) {
       }
     }
     //dodajemy rakiete z powrotem
+    blip.play();
     rakiety++;
   } else if (
     document.getElementById(Rid).style.backgroundImage !==
@@ -219,6 +262,7 @@ function cel(ele) {
     //jeżeli pole jest puste
     if (rakiety > 0) {
       //nadajemy teksture celu
+      blip.play();
       document.getElementById(Rid).style.backgroundImage = "url(./img/cel.png)";
       //odejmuje rakiete i pushujemy ID komórki do strzalów
       rakiety--;
@@ -232,6 +276,7 @@ function pal() {
   if (lista == 2) {
     //Czy rakiety są zdepletowane?
     if (rakiety == 0) {
+      hurt.play();
       //Sprawdźmy trafienia, poniższy kod działa na każdy rekord w tabeli 'strzały'.
       for (let s = 0; s < strzaly.length; s++) {
         //Wyciągam 2 i 3 litere z RID komórki radaru
@@ -242,7 +287,7 @@ function pal() {
         document.getElementById(strzaly[s]).style.backgroundImage =
           "url(./img/pal.png)";
 
-        //opóźnienie na 2 sekundy
+        //opóźnienie na 3,5 sekundy
         setTimeout(function () {
           //Przyrównuje wyciągniete ID do tabeli statków
           if (statki.includes(Sx + Sy)) {
@@ -255,7 +300,7 @@ function pal() {
             document.getElementById(strzaly[s]).style.backgroundImage =
               "url(./img/pudlo.png)";
           }
-        }, 4000);
+        }, 3500);
       }
       //Możemy przekazać gre przeciwnikowi
       areWeGood = 1;
@@ -266,6 +311,7 @@ function pal() {
   } //kopia dla listy pierwszej nie bede już pisał niżej
   else {
     if (rakiety == 0) {
+      hurt.play();
       for (let s = 0; s < strzaly.length; s++) {
         let Sx = strzaly[s].charAt(1);
         let Sy = strzaly[s].charAt(2);
@@ -276,6 +322,7 @@ function pal() {
           if (statki2.includes(Sx + Sy)) {
             document.getElementById(strzaly[s]).style.backgroundImage =
               "url(./img/bam.png)";
+            explosion.play();
             brokenStatki2.push(Sx + Sy);
           } else {
             document.getElementById(strzaly[s]).style.backgroundImage =
@@ -389,7 +436,6 @@ function dodajStatek() {
               statki.includes(plansza[xNumber + j] + y) ||
               statkiGhost.includes(plansza[xNumber + j] + y)
             ) {
-              alert("statki nie moga sie stykac");
               dodajStatekCounter = 0;
               break;
             } else {
@@ -405,7 +451,6 @@ function dodajStatek() {
               statki.includes(plansza[xNumber] + (y + j)) ||
               statkiGhost.includes(plansza[xNumber] + (y + j))
             ) {
-              alert("statki nie moga sie stykac");
               dodajStatekCounter = 0;
               break;
             } else {
@@ -471,7 +516,6 @@ function dodajStatek() {
             }
 
             for (i = 0; i <= dlugosc - 1; i++) {
-              killer();
               document.getElementById(
                 plansza[xNumber] + (y + i)
               ).style.backgroundColor = "gray";
@@ -541,7 +585,6 @@ function dodajStatek() {
         //obrot statku pionowy
         //Miro ma małego chuja lol
         if (dodajStatekCounter2 == dlugosc) {
-          killer();
           if (rotateShip == 0) {
             switch (true) {
               case dlugosc == 4 && dodajStatekCounter2 == 4:
@@ -577,7 +620,6 @@ function dodajStatek() {
           }
           //obrot poziomy
           else if (rotateShip == 1) {
-            killer();
             switch (true) {
               case dlugosc == 4:
                 counter2_4 = counter2_4 - 1;
@@ -617,6 +659,7 @@ function dodajStatek() {
       document.querySelector("#siurek").style.opacity = 0;
     });
   }
+
   RedButton();
 }
 
@@ -625,27 +668,25 @@ document.addEventListener("mousemove", function (e) {
   document.querySelector("#siurek").style.top = eval(e.clientY - 30) + "px";
 });
 
-function killer() {
-  var ilePol = statkiGhost.length;
-  //   for (k = 0; k < ilePol; k++) {
-  //     if (document.getElementById(statkiGhost[k]) == null) {
-  //     } //else {
-  //     //    document.getElementById(statkiGhost[k]).style.backgroundColor = "red";
-  //     // }
-  //   }
-}
-lista = 1;
 var zmianaPlanszyCounter = 0;
 
 function zmianaPlanszy() {
   document.getElementById("onHold1").style.display = "none";
   document.getElementById("onHold2").style.display = "none";
+  document.getElementById("onHold4").style.display = "none";
+  if (killmode == 1) {
+    document.getElementById("buonContainer").style.display = "none";
+    document.getElementById("fightContainer").style.display = "flex";
+  }
   //Jesteśmy gotowi na zmiane planszy!
   if (areWeGood == 1) {
     //Zaczynamy! Blokuję zmianę planszy
     areWeGood = 0;
     //Jest już gra ofensywna czy jeszcze ustawianie statków?
-
+    fuckTheNan();
+    if (multi > 0) {
+      document.dispatchEvent(wysylamy);
+    }
     //Już strzelamy:
     if (killmode == 1) {
       //Spawn radaru
@@ -706,12 +747,14 @@ function zmianaPlanszy() {
     }
 
     //Jeszcze nie strzelamy, albo już skończyliśmy
-    if (lista == 1) {
-      rakiety = rakietyCap2;
-      lista++;
-    } else if (lista == 2) {
-      rakiety = rakietyCap;
-      lista--;
+    if (multi == 0) {
+      if (lista == 1) {
+        rakiety = rakietyCap2;
+        lista++;
+      } else if (lista == 2) {
+        rakiety = rakietyCap;
+        lista--;
+      }
     }
     myElement = document.getElementById("plansza");
 
@@ -731,7 +774,7 @@ function zmianaPlanszy() {
       document.getElementById(statki2[z]).style.backgroundColor = "gray";
     }
     for (let h = 0; h < brokenStatki2.length; h++) {
-      document.getElementById(brokenStatki2[h]).style.backgroundColor = "blue";
+      document.getElementById(brokenStatki2[h]).style.backgroundColor = "red";
     }
   }
 
@@ -839,12 +882,21 @@ setInterval(() => {
     document.getElementById("ktory").innerHTML = lista;
     document.getElementById("onHold3").style.display = "flex";
   }
-  document.getElementById("fCounter").innerHTML = parseInt(
-    20 - brokenStatki.length
-  );
-  document.getElementById("eCounter").innerHTML = parseInt(
-    20 - brokenStatki2.length
-  );
+  if (lista == 1) {
+    document.getElementById("fCounter").innerHTML = parseInt(
+      20 - brokenStatki.length
+    );
+    document.getElementById("eCounter").innerHTML = parseInt(
+      20 - brokenStatki2.length
+    );
+  } else if (lista == 2) {
+    document.getElementById("fCounter").innerHTML = parseInt(
+      20 - brokenStatki2.length
+    );
+    document.getElementById("eCounter").innerHTML = parseInt(
+      20 - brokenStatki.length
+    );
+  }
 }, 100);
 
 function gameMode(x) {
@@ -852,7 +904,6 @@ function gameMode(x) {
   Local = document.getElementById("local");
   Jebac = document.getElementById("jebac");
 
-  console.log(x);
   switch (x) {
     case 0:
       Multi.style.display = "none";
@@ -875,15 +926,20 @@ function gameMode(x) {
 
 function holUp() {
   if (areWeGood == 1) {
-    Uno = document.getElementById("onHold1");
-    Duo = document.getElementById("onHold2");
-    switch (lista) {
-      case 1:
-        Uno.style.display = "flex";
-        break;
-      case 2:
-        Duo.style.display = "flex";
-        break;
+    if (multi == 0) {
+      Uno = document.getElementById("onHold1");
+      Duo = document.getElementById("onHold2");
+      switch (lista) {
+        case 1:
+          Uno.style.display = "flex";
+          break;
+        case 2:
+          Duo.style.display = "flex";
+          break;
+      }
+    } else if (multi == 1) {
+      Trio = document.getElementById("onHold4");
+      Trio.style.display = "flex";
     }
   }
 }
@@ -894,5 +950,20 @@ function shotsFired() {
     var Stx = strzelecID.charAt(1);
     var Sty = strzelecID.charAt(2);
     document.getElementById(Stx + Sty).innerHTML += "<div  id='missle' />";
+  }
+}
+
+function fuckTheNan() {
+  for (let n = 0; n < statkiGhost.length; n++) {
+    if (statkiGhost[n] == statkiGhost[n]) {
+    } else {
+      statkiGhost.splice(n, 1, "brak");
+    }
+  }
+  for (let n = 0; n < statkiGhost2.length; n++) {
+    if (statkiGhost2[n] == statkiGhost2[n]) {
+    } else {
+      statkiGhost2.splice(n, 1, "brak");
+    }
   }
 }

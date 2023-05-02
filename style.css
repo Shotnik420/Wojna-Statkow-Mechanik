@@ -133,7 +133,7 @@ body {
   top: 0;
   left: 10px;
   opacity: 0;
-
+  z-index: 4;
   pointer-events: none;
 }
 #buon {
@@ -152,7 +152,9 @@ body {
   font-size: 28px;
   overflow: hidden;
 }
-
+.niggaPlease {
+  display: none;
+}
 #mainMenu {
   width: 100vw;
   height: 100vh;
@@ -169,7 +171,8 @@ body {
 
 #onHold1,
 #onHold2,
-#onHold3 {
+#onHold3,
+#onHold4 {
   width: 100vw;
   height: 100vh;
   position: absolute;
@@ -214,7 +217,7 @@ body {
 #jebac {
   width: 30vw;
   height: 30vh;
-  background-color: #a8ce53;
+
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -312,4 +315,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+#negro,
+#Lnegro {
+  display: none;
 }
