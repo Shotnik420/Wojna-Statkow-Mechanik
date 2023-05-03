@@ -108,7 +108,7 @@
       </div>
       <div>
         <div id="fightContainer">
-          <button class="buon2" onclick="holUp()">Kontynuuj</button>
+          <button class="buon2" onclick="zmianaPlanszy()">Kontynuuj</button>
           <button class="buon2" onclick="pal()">Zatwierdz</button>
           <img id="boobies" src="./img/missle.png"/> <span id="rocketCounter">3</span></p>
           <div id="fCounter"></div>
@@ -116,7 +116,7 @@
         </div>
         <div id="buonContainer">
           <button class="buon2" id="Lnegro"onclick="holUp()">Kontynuuj</button>
-          <button class="buon2" id="negro" onclick="zmianaPlanszy()">Kontynuuj</button>
+          <button class="buon2" id="negro" onclick="zmianaPlanszy()">fuck this man</button>
           <button class="buon2 jedynka" id="jedynka" onclick="wyborStatku(1)">
             1
           </button>
@@ -190,7 +190,7 @@
         })
       function sendData () {
         set(ref(db, "Game"), {
-          Gracz: 2,
+          Gracz: Gamer,
           Statki1: [statki],
           Statki2: [statki2],
           StatkiGhost1: [statkiGhost],

@@ -41,6 +41,7 @@ multi = 0;
 
 whoGames = 0;
 
+Gamer = 0;
 const wysylamy = new Event("sendTheData");
 const dawajGracza = new Event("getThePlayer");
 //Generacja pól gry
@@ -112,9 +113,11 @@ function startGame(x) {
     switch (x) {
       case 1:
         lista = 1;
+        Gamer = 2;
         break;
       case 2:
         lista = 2;
+        Gamer = 1;
         break;
     }
   }
@@ -899,6 +902,7 @@ setInterval(() => {
   }
 }, 100);
 
+//kontrolki do main menu
 function gameMode(x) {
   Multi = document.getElementById("multi");
   Local = document.getElementById("local");
