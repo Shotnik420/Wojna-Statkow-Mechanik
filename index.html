@@ -41,7 +41,7 @@
     </div>
     <div id="onHold4">
       <div id="onHold1--text">Oczekiwanie na odpowiedź serwera<span id="ktory"></span> Gracz</div>
-      <div id="onHold1--button" class="niggaPlease" onClick="zmianaPlanszy()">Kontynuuj</div>
+      <div id="onHold1--button" class="niggaPlease" onClick="dZP()">Kontynuuj</div>
     </div>
     
     <div id="sortownik">
@@ -108,7 +108,7 @@
       </div>
       <div>
         <div id="fightContainer">
-          <button class="buon2" onclick="zmianaPlanszy()">Kontynuuj</button>
+          <button class="buon2" onclick="sZP()">Kontynuuj</button>
           <button class="buon2" onclick="pal()">Zatwierdz</button>
           <img id="boobies" src="./img/missle.png"/> <span id="rocketCounter">3</span></p>
           <div id="fCounter"></div>
@@ -116,7 +116,7 @@
         </div>
         <div id="buonContainer">
           <button class="buon2" id="Lnegro"onclick="holUp()">Kontynuuj</button>
-          <button class="buon2" id="negro" onclick="zmianaPlanszy()">fuck this man</button>
+          <button class="buon2" id="negro" onclick="sZP()">fuck this man</button>
           <button class="buon2 jedynka" id="jedynka" onclick="wyborStatku(1)">
             1
           </button>
@@ -188,6 +188,9 @@
         document.addEventListener("getThePlayer", e =>{
           getPlayer();
         })
+        document.addEventListener("getTheData", e =>{
+          getData();
+        })
       function sendData () {
         set(ref(db, "Game"), {
           Gracz: Gamer,
@@ -207,11 +210,14 @@
           Counter2_2: counter2_2,
           Counter2_3: counter2_3,
           Counter2_4: counter2_4,
+          KillMode: killmode,
          
         })
           .then(() => {
             console.log("pakiet wysłany");
+            zmianaPlanszy();
             return false;
+            
           })
           .catch((error) => {
             alert(error);
@@ -223,14 +229,14 @@
         const duparef = ref(db)
         get(child(duparef, "Game/Gracz")).then((snapshot)=>{
 
-          console.log(snapshot.val());
+           
           whoGames=snapshot.val();
         })
       }
       function getData () {
         
         const dbref = ref(db)
-        
+        console.log("getting data");
         get(child(dbref, "Game/Statki1/0")).then((snapshot)=>{
           statki = [];
           snapshot.forEach(childSnapshot =>{
@@ -255,6 +261,18 @@
             strzalyMem2.push(childSnapshot.val());
           })
         })
+        get(child(dbref, "Game/StatkiGhost1/0")).then((snapshot)=>{
+          statkiGhost = [];
+          snapshot.forEach(childSnapshot =>{
+            statkiGhost.push(childSnapshot.val());
+          })
+        })
+        get(child(dbref, "Game/StatkiGhost2/0")).then((snapshot)=>{
+          statkiGhost2 = [];
+          snapshot.forEach(childSnapshot =>{
+            statkiGhost2.push(childSnapshot.val());
+          })
+        })
         get(child(dbref, "Game/BrokenStatki/0")).then((snapshot)=>{
           brokenStatki = [];
           snapshot.forEach(childSnapshot =>{
@@ -267,31 +285,36 @@
             brokenStatki2.push(childSnapshot.val());
           })
         })
-        get(child(duparef, "Game/Counter1")).then((snapshot)=>{
+        get(child(dbref, "Game/Counter1")).then((snapshot)=>{
         counter1=snapshot.val();
         })
-        get(child(duparef, "Game/Counter2")).then((snapshot)=>{
+        get(child(dbref, "Game/Counter2")).then((snapshot)=>{
         counter2=snapshot.val();
         })
-        get(child(duparef, "Game/Counter3")).then((snapshot)=>{
+        get(child(dbref, "Game/Counter3")).then((snapshot)=>{
         counter3=snapshot.val();
         })
-        get(child(duparef, "Game/Counter4")).then((snapshot)=>{
+        get(child(dbref, "Game/Counter4")).then((snapshot)=>{
         counter4=snapshot.val();
         })
-        get(child(duparef, "Game/Counter2_1")).then((snapshot)=>{
+        get(child(dbref, "Game/Counter2_1")).then((snapshot)=>{
         counter2_1=snapshot.val();
         })
-        get(child(duparef, "Game/Counter2_2")).then((snapshot)=>{
+        get(child(dbref, "Game/Counter2_2")).then((snapshot)=>{
         counter2_2=snapshot.val();
         })
-        get(child(duparef, "Game/Counter2_3")).then((snapshot)=>{
+        get(child(dbref, "Game/Counter2_3")).then((snapshot)=>{
         counter2_3=snapshot.val();
         })
-        get(child(duparef, "Game/Counter2_4")).then((snapshot)=>{
+        get(child(dbref, "Game/Counter2_4")).then((snapshot)=>{
         counter2_4=snapshot.val();
         })
-
+        get(child(dbref, "Game/KillMode")).then((snapshot)=>{
+        killmode=snapshot.val();
+        }).then(()=>{
+          console.log("myballllls!!!")
+          zmianaPlanszy();
+        })
         
         
 
