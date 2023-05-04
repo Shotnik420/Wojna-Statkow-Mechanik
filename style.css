@@ -257,7 +257,8 @@ body {
 #missle {
   width: 20px;
   height: 50px;
-  top: 3vh;
+  top: 2vh;
+  opacity: 0;
   z-index: 1;
   position: absolute;
   background-image: url("./img/missle.png");
@@ -288,10 +289,12 @@ body {
 }
 
 @keyframes twat {
-  0% {
+  from {
     top: 80vh;
+    opacity: 1;
   }
-  100% {
+  to {
+    opacity: 1;
   }
 }
 
@@ -316,7 +319,7 @@ body {
   align-items: center;
   justify-content: center;
 }
-#negro,
-#Lnegro {
+.lokalnyB,
+.onlineB {
   display: none;
 }

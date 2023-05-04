@@ -1,50 +1,3 @@
-//document
-var plansza = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
-
-var statki = [];
-var statki2 = [];
-var statkiGhost = [];
-var statkiGhost2 = [];
-var strzaly = [];
-var strzalyMem = [];
-var strzalyMem2 = [];
-var rakiety = 0;
-var brokenStatki = [];
-var brokenStatki2 = [];
-
-//zmienne
-dlugosc = 0;
-xNumber = 0;
-counter = 0;
-
-counter4 = 1;
-counter3 = 2;
-counter2 = 3;
-counter1 = 4;
-
-counter2_4 = 1;
-counter2_3 = 2;
-counter2_2 = 3;
-counter2_1 = 4;
-
-lista = 1;
-
-killmode = 0;
-
-areWeGood = 0;
-
-rakietyCap = 0;
-
-weGame = 0;
-
-multi = 0;
-
-whoGames = 0;
-
-Gamer = 0;
-const wysylamy = new Event("sendTheData");
-const dawajGracza = new Event("getThePlayer");
-const dawajDane = new Event("getTheData");
 //Generacja pól gry
 for (i = 0; i < 10; i++) {
   for (j = 0; j < 10; j++) {
@@ -67,17 +20,6 @@ for (i = 0; i < 10; i++) {
 }
 setInterval(() => {
   document.getElementById("rocketCounter").innerHTML = rakiety;
-  // console.log("Are we good: " + areWeGood);
-  //tutaj pulluje suki w tym miejscu
-  if (multi > 0) {
-    document.dispatchEvent(dawajGracza);
-    if (whoGames == lista) {
-      document.querySelector(".niggaPlease").style.display = "flex";
-    } else {
-      holUpMulti();
-      document.querySelector(".niggaPlease").style.display = "none";
-    }
-  }
 }, 200);
 
 //Sound effects
@@ -102,11 +44,11 @@ var hurt = new sound("./sfx/hurt.wav");
 
 function startGame(x) {
   weGame = 1;
-  document.getElementById("Lnegro").style.display = "block";
+  document.querySelector(".lokalnyB").style.display = "block";
 
   if (x > 0) {
-    document.getElementById("Lnegro").style.display = "none";
-    document.getElementById("negro").style.display = "block";
+    document.querySelector(".lokalnyB").style.display = "none";
+    document.querySelector(".onlineB").style.display = "block";
     multi = 1;
     areWeGood = 1;
     holUpMulti();
@@ -683,36 +625,11 @@ document.addEventListener("mousemove", function (e) {
 
 var zmianaPlanszyCounter = 0;
 
-function dZP() {
-  console.log("want data");
-  document.dispatchEvent(dawajDane);
-  areWeGood = 1;
-}
-
-function sZP() {
-  if (lista == 1) {
-    for (let i = 0; i < strzaly.length; i++) {
-      strzalyMem.push(strzaly[i]);
-    }
-  } else if (lista == 2) {
-    for (let i = 0; i < strzaly.length; i++) {
-      strzalyMem2.push(strzaly[i]);
-    }
-  }
-  strzaly.splice(0, strzaly.length);
-
-  fuckTheNan();
-  console.log("send data");
-  document.dispatchEvent(wysylamy);
-}
-
 function zmianaPlanszy() {
   document.getElementById("onHold1").style.display = "none";
   document.getElementById("onHold2").style.display = "none";
   document.getElementById("onHold4").style.display = "none";
   if (killmode == 1) {
-    document.getElementById("buonContainer").style.display = "none";
-    document.getElementById("fightContainer").style.display = "flex";
   }
   //Jesteśmy gotowi na zmiane planszy!
   if (areWeGood == 1) {
@@ -723,6 +640,8 @@ function zmianaPlanszy() {
     //Już strzelamy:
     if (killmode == 1) {
       //Spawn radaru
+      document.getElementById("buonContainer").style.display = "none";
+      document.getElementById("fightContainer").style.display = "flex";
       document.getElementById("matkaPlansza2").style.display = "grid";
       //Wymażmy wszystkie pola
       var kratkiRadaru = document.querySelectorAll(".pole2");
@@ -1009,15 +928,8 @@ function holUp() {
           Duo.style.display = "flex";
           break;
       }
-    } else if (multi == 1) {
-      Trio = document.getElementById("onHold4");
-      Trio.style.display = "flex";
     }
   }
-}
-function holUpMulti() {
-  Trio = document.getElementById("onHold4");
-  Trio.style.display = "flex";
 }
 
 function shotsFired() {
@@ -1026,21 +938,6 @@ function shotsFired() {
     var Stx = strzelecID.charAt(1);
     var Sty = strzelecID.charAt(2);
     document.getElementById(Stx + Sty).innerHTML += "<div  id='missle' />";
-  }
-}
-
-function fuckTheNan() {
-  for (let n = 0; n < statkiGhost.length; n++) {
-    if (statkiGhost[n] == statkiGhost[n]) {
-    } else {
-      statkiGhost.splice(n, 1, "brak");
-    }
-  }
-  for (let n = 0; n < statkiGhost2.length; n++) {
-    if (statkiGhost2[n] == statkiGhost2[n]) {
-    } else {
-      statkiGhost2.splice(n, 1, "brak");
-    }
   }
 }
 
