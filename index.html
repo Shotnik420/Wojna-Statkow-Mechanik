@@ -9,23 +9,27 @@
   </head>
   <body>
     <div id="mainMenu">
-      <img src="/img/logo.png" />
-      <div id="jebac">
-        <h1>Wybierz rodzaj rozgrywki</h1>
-        <button onclick="gameMode(1)" class="menuButton">Lokalnie</button>
-        <button onclick="gameMode(2)" class="menuButton">Online</button>
+      <h1>Statki </h1>
+      <div id="start">
+        <h2>Wybierz rodzaj rozgrywki</h2>
+        <section>
+        <div onclick="gameMode(1)" class="menuButton">Lokalnie</div>
+        <div onclick="gameMode(2)" class="menuButton">Online</div>
+        </section>
       </div>
 
       <div id="local">
-        <button onclick="gameMode(0)" class="back">Wroc</button>
-        <button onclick="startGame(0)">Zacznij gre</button>
+        
+        <div onclick="startGame(0)" class="menuButton">Zacznij gre</div>
+        <div onclick="gameMode(0)" class="menuButton">Wroc</div>
       </div>
       <div id="multi">
-        <button onclick="gameMode(0)" class="back">Wroc</button>
-        <button onclick="startGame(1)">Gracz 1</button>
-        <button onclick="startGame(2)">Gracz 2</button>
+        
+        <div onclick="startGame(1)" class="menuButton">Gracz 1</div>
+        <div onclick="startGame(2)" class="menuButton">Gracz 2</div>
+        <div onclick="gameMode(0)" class="menuButton">Wroc</div>
       </div>
-      <img src="/img/bababooya.jpg" />
+
     </div>
     <div id="onHold1">
       <div id="onHold1--text">Przekaż grę drugiemu graczowi</div>
@@ -48,7 +52,6 @@
       <div id="playarea">
         <div id="matkaPlansza">
           <div onhov id="holder"></div>
-
           <div id="liczby">
             <div class="liczbyPola">1</div>
             <div class="liczbyPola">2</div>
@@ -135,8 +138,8 @@
     </div>
 
     <div id="siurek"></div>
-    <button id="FUCKYOU">Send nudle</button>
-    <button id="FUCKYOU2">Get nudle</button>
+    <!-- <button id="FUCKYOU">Send nudle</button>
+    <button id="FUCKYOU2">Get nudle</button> -->
     <script src="zmienne.js"></script>
     <script src="script.js"></script>
     <script src="multiplayer.js"></script>

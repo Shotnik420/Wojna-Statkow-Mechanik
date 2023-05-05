@@ -893,24 +893,24 @@ setInterval(() => {
 function gameMode(x) {
   Multi = document.getElementById("multi");
   Local = document.getElementById("local");
-  Jebac = document.getElementById("jebac");
+  start = document.getElementById("start");
 
   switch (x) {
     case 0:
       Multi.style.display = "none";
       Local.style.display = "none";
-      Jebac.style.display = "flex";
+      start.style.display = "flex";
 
       break;
     case 1:
       Multi.style.display = "none";
       Local.style.display = "flex";
-      Jebac.style.display = "none";
+      start.style.display = "none";
       break;
     case 2:
       Multi.style.display = "flex";
       Local.style.display = "none";
-      Jebac.style.display = "none";
+      start.style.display = "none";
       break;
   }
 }

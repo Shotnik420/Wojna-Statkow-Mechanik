@@ -155,18 +155,76 @@ body {
 .niggaPlease {
   display: none;
 }
+
+/* _______________________________________________________________________________________________________________________________________________________________ */
+
 #mainMenu {
   width: 100vw;
   height: 100vh;
+
+  background-image: url(img/mainMenuBg.webp);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-around;
   text-align: center;
 }
-#mainMenu > img {
-  width: auto;
-  height: 200px;
-  width: 1000px;
+
+#mainMenu h1 {
+  color: white;
+  font-size: 10vh;
+}
+#mainMenu h2 {
+  font-size: 4vh;
+  color: white;
+}
+#start {
+  display: flex;
+  flex-direction: column;
+}
+#start section {
+  width: 50vw;
+  margin-top: 7vh;
+
+  display: flex;
+
+  justify-content: space-evenly;
+}
+
+#logo {
+  width: 30vh;
+  height: 30vh;
+
+  background-image: url(img/logo.png);
+  background-size: 100% 100%;
+}
+.menuButton {
+  background-color: white;
+  width: 15vh;
+  height: 7vh;
+  color: rgb(0, 0, 0);
+  font-weight: 700;
+
+  font-size: 2vh;
+
+  background-image: url(img/button.webp);
+  background-size: 100% 100%;
+  border-radius: 1vh;
+  text-align: center;
+  line-height: 7vh;
+
+  transition: 0.3s;
+}
+
+.menuButton:hover {
+  cursor: pointer;
+  opacity: 0.95;
+  transform: scale(1.04);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    url(img/button.webp);
 }
 
 #onHold1,
