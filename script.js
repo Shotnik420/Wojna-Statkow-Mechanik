@@ -126,16 +126,20 @@ const setupPhase2 = setInterval(() => {
 function RedButton() {
   if (lista == 1) {
     if (counter1 == 0) {
-      document.querySelector(".jedynka").style.backgroundColor = "red";
+      document.querySelector(".jedynka").style.backgroundImage =
+        "url('img/statki/jedynkaV-red.png')";
     }
     if (counter2 == 0) {
-      document.querySelector(".dwojka").style.backgroundColor = "red";
+      document.querySelector(".dwojka").style.backgroundImage =
+        "url('img/statki/dwojkaV-red.png')";
     }
     if (counter3 == 0) {
-      document.querySelector(".trojka").style.backgroundColor = "red";
+      document.querySelector(".trojka").style.backgroundImage =
+        "url('img/statki/trojkaV-red.png')";
     }
     if (counter4 == 0) {
-      document.querySelector(".czworka").style.backgroundColor = "red";
+      document.querySelector(".czworka").style.backgroundImage =
+        "url('img/statki/czworkaV-Red.png')";
     }
   } else {
     if (
@@ -299,10 +303,17 @@ function wyborStatku(x) {
     switch (true) {
       case x == 1 && counter1 > 0:
         dlugosc = 1;
+        if (rotateShip == 0) {
+        } else {
+          document.getElementById("siurek").style.backgroundImage =
+            "url('img/statki/jedynkaH.png')";
+        }
         rotateUpdate();
         return;
       case x == 2 && counter2 > 0:
         dlugosc = 2;
+        document.getElementById("siurek").style.backgroundImage =
+          "url('img/statki/dwojkaV.png')";
         rotateUpdate();
         return;
       case x == 3 && counter3 > 0:
@@ -353,27 +364,59 @@ function wyborStatku(x) {
 
 //obracanie statku updater
 function rotateUpdate() {
-  if (rotateShip == "0") {
-    document.getElementById("siurek").style.height = 60 * dlugosc + "px";
-    document.getElementById("siurek").style.width = "60px";
-  } else {
+  switch (true) {
+    case dlugosc == 1 && rotateShip == 0:
+      document.getElementById("siurek").style.backgroundImage =
+        "url('img/statki/jedynkaV.png')";
+      break;
+    case dlugosc == 1 && rotateShip == 1:
+      document.getElementById("siurek").style.backgroundImage =
+        "url('img/statki/jedynkaH.png')";
+      break;
+
+    case dlugosc == 2 && rotateShip == 0:
+      document.getElementById("siurek").style.backgroundImage =
+        "url('img/statki/dwojkaV.png')";
+      break;
+    case dlugosc == 2 && rotateShip == 1:
+      document.getElementById("siurek").style.backgroundImage =
+        "url('img/statki/dwojkaH.png')";
+      break;
+    case dlugosc == 3 && rotateShip == 0:
+      document.getElementById("siurek").style.backgroundImage =
+        "url('img/statki/trojkaV.png')";
+      break;
+    case dlugosc == 3 && rotateShip == 1:
+      document.getElementById("siurek").style.backgroundImage =
+        "url('img/statki/trojkaH.png')";
+      break;
+    case dlugosc == 4 && rotateShip == 0:
+      document.getElementById("siurek").style.backgroundImage =
+        "url('img/statki/czworkaV.png')";
+      break;
+    case dlugosc == 4 && rotateShip == 1:
+      document.getElementById("siurek").style.backgroundImage =
+        "url('img/statki/czworkaH.png')";
+      break;
+  }
+  if (rotateShip == 1) {
     document.getElementById("siurek").style.height = "60px";
     document.getElementById("siurek").style.width = 60 * dlugosc + "px";
+  } else {
+    document.getElementById("siurek").style.height = 60 * dlugosc + "px";
+    document.getElementById("siurek").style.width = "60px";
   }
 }
 //Obracanie statku
 rotateShip = 0;
 addEventListener("keypress", (event) => {
   if (event.key == "r") {
-    if (rotateShip == "1") {
-      document.getElementById("siurek").style.height = 60 * dlugosc + "px";
-      document.getElementById("siurek").style.width = "60px";
+    if (rotateShip == 1) {
       rotateShip = 0;
     } else {
-      document.getElementById("siurek").style.height = "60px";
-      document.getElementById("siurek").style.width = 60 * dlugosc + "px";
       rotateShip = 1;
     }
+    rotateUpdate();
   }
 });
 

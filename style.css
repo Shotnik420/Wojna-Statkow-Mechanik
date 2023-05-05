@@ -57,6 +57,16 @@ body {
   cursor: pointer;
 }
 
+#logo {
+  width: 40vh;
+  height: 40vh;
+
+  background-image: url(img/logo.png);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 #matkaPlansza {
   width: 80vh;
   background-color: black;
@@ -127,14 +137,18 @@ body {
 
 #siurek {
   position: absolute;
-  width: 60px;
-  height: 60px;
-  background-color: gray;
+  width: 64px;
+  height: 64px;
+  /* background-color: gray; */
   top: 0;
   left: 10px;
   opacity: 0;
   z-index: 4;
   pointer-events: none;
+
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
 }
 #buon {
   background-color: green;
@@ -194,13 +208,6 @@ body {
   justify-content: space-evenly;
 }
 
-#logo {
-  width: 30vh;
-  height: 30vh;
-
-  background-image: url(img/logo.png);
-  background-size: 100% 100%;
-}
 .menuButton {
   background-color: white;
   width: 15vh;
@@ -225,6 +232,34 @@ body {
   transform: scale(1.04);
   background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
     url(img/button.webp);
+}
+#jedynka {
+  background-image: url(img/statki/jedynkaV.png);
+}
+
+#dwojka {
+  background-image: url(img/statki/dwojkaV.png);
+}
+#trojka {
+  background-image: url(img/statki/trojkaV.png);
+}
+#czworka {
+  background-image: url(img/statki/czworkaV.png);
+}
+#jedynka,
+#dwojka,
+#trojka,
+#czworka {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: 0.5s;
+}
+#jedynka:hover,
+#dwojka:hover,
+#trojka:hover,
+#czworka:hover {
+  transform: scale(1.1);
 }
 
 #onHold1,
