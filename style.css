@@ -12,7 +12,8 @@ body {
   align-items: center;
   justify-content: center;
   align-items: center;
-  background-color: rgb(79, 79, 79);
+  background-image: url("./img/control_panel.jpg");
+  background-size: 100% 100%;
   overflow: hidden;
   font-family: "Inter", sans-serif;
 }
@@ -47,6 +48,16 @@ body {
   /* background-color: rgb(91, 75, 75); */
   border: 1px solid black;
   border-collapse: collapse;
+
+  display: flex;
+  justify-content: start;
+}
+
+.statek {
+  position: absolute;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .pole2 {
@@ -68,6 +79,7 @@ body {
 }
 
 #matkaPlansza {
+  border: #e0d8d5 10px solid;
   width: 80vh;
   background-color: black;
 
@@ -96,6 +108,9 @@ body {
   display: none;
   align-items: center;
   justify-content: space-evenly;
+  background-color: #80716b;
+  height: 10vh;
+  border: #e0d8d5 solid 10px;
 }
 #fightContainer {
   width: 80vh;
@@ -104,6 +119,8 @@ body {
   display: none;
   align-items: center;
   justify-content: space-evenly;
+  border: #e0d8d5 solid 10px;
+  background-color: #80716b;
 }
 
 #holder {
@@ -229,7 +246,7 @@ body {
 .menuButton:hover {
   cursor: pointer;
   opacity: 0.95;
-  transform: scale(1.04);
+  transform: scale(1.1);
   background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
     url(img/button.webp);
 }
@@ -259,7 +276,8 @@ body {
 #dwojka:hover,
 #trojka:hover,
 #czworka:hover {
-  transform: scale(1.1);
+  transform: scale(1.4);
+  cursor: pointer;
 }
 
 #onHold1,
@@ -342,7 +360,7 @@ body {
   justify-content: space-evenly;
 }
 #playarea {
-  width: 80vw;
+  width: 90vw;
   height: 80vh;
   display: flex;
   justify-content: space-around;

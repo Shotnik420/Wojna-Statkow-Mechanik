@@ -44,11 +44,21 @@ var hurt = new sound("./sfx/hurt.wav");
 
 function startGame(x) {
   weGame = 1;
-  document.querySelector(".lokalnyB").style.display = "block";
-
+  const lokalnebuts = document.querySelectorAll(".lokalnyB");
+  for (let i = 0; i < lokalnebuts.length; i++) {
+    lokalnebuts[i].style.display = "block";
+  }
+  const onlinebuts = document.querySelectorAll(".lokalnyB");
+  for (let i = 0; i < lokalnebuts.length; i++) {
+    lokalnebuts[i].style.display = "block";
+  }
   if (x > 0) {
-    document.querySelector(".lokalnyB").style.display = "none";
-    document.querySelector(".onlineB").style.display = "block";
+    for (let i = 0; i < onlinebuts.length; i++) {
+      onlinebuts[i].style.display = "block";
+    }
+    for (let i = 0; i < lokalnebuts.length; i++) {
+      lokalnebuts[i].style.display = "none";
+    }
     multi = 1;
     areWeGood = 1;
     holUpMulti();
@@ -148,22 +158,33 @@ function RedButton() {
       counter2_2 == 3 &&
       counter2_1 == 4
     ) {
-      document.querySelector(".jedynka").style.backgroundColor = "white";
-      document.querySelector(".dwojka").style.backgroundColor = "white";
-      document.querySelector(".trojka").style.backgroundColor = "white";
-      document.querySelector(".czworka").style.backgroundColor = "white";
+      document.querySelector(".jedynka").style.backgroundImage =
+        "url('img/statki/jedynkaV.png')";
+
+      document.querySelector(".dwojka").style.backgroundImage =
+        "url('img/statki/dwojkaV.png')";
+
+      document.querySelector(".trojka").style.backgroundImage =
+        "url('img/statki/trojkaV.png')";
+
+      document.querySelector(".czworka").style.backgroundImage =
+        "url('img/statki/czworkaV.png')";
     }
     if (counter2_1 == 0) {
-      document.querySelector(".jedynka").style.backgroundColor = "red";
+      document.querySelector(".jedynka").style.backgroundImage =
+        "url('img/statki/jedynkaV-red.png')";
     }
     if (counter2_2 == 0) {
-      document.querySelector(".dwojka").style.backgroundColor = "red";
+      document.querySelector(".dwojka").style.backgroundImage =
+        "url('img/statki/dwojkaV-red.png')";
     }
     if (counter2_3 == 0) {
-      document.querySelector(".trojka").style.backgroundColor = "red";
+      document.querySelector(".trojka").style.backgroundImage =
+        "url('img/statki/trojkaV-red.png')";
     }
     if (counter2_4 == 0) {
-      document.querySelector(".czworka").style.backgroundColor = "red";
+      document.querySelector(".czworka").style.backgroundImage =
+        "url('img/statki/czworkaV-Red.png')";
     }
   }
 }
@@ -235,34 +256,38 @@ function pal() {
   if (lista == 2) {
     //Czy rakiety są zdepletowane?
     if (rakiety == 0) {
-      hurt.play();
-      //Sprawdźmy trafienia, poniższy kod działa na każdy rekord w tabeli 'strzały'.
-      for (let s = 0; s < strzaly.length; s++) {
-        //Wyciągam 2 i 3 litere z RID komórki radaru
-        let Sx = strzaly[s].charAt(1);
-        let Sy = strzaly[s].charAt(2);
-        shotsFired();
-        //Zmiana na powiedzmy "bufor" animacje
-        document.getElementById(strzaly[s]).style.backgroundImage =
-          "url(./img/pal.png)";
+      if (needReload == 0) {
+        needReload = 1;
+        hurt.play();
+        //Sprawdźmy trafienia, poniższy kod działa na każdy rekord w tabeli 'strzały'.
+        for (let s = 0; s < strzaly.length; s++) {
+          //Wyciągam 2 i 3 litere z RID komórki radaru
+          let Sx = strzaly[s].charAt(1);
+          let Sy = strzaly[s].charAt(2);
+          shotsFired();
+          //Zmiana na powiedzmy "bufor" animacje
+          document.getElementById(strzaly[s]).style.backgroundImage =
+            "url(./img/pal.png)";
 
-        //opóźnienie na 3,5 sekundy
-        setTimeout(function () {
-          //Przyrównuje wyciągniete ID do tabeli statków
-          if (statki.includes(Sx + Sy)) {
-            //Trafiłem
-            document.getElementById(strzaly[s]).style.backgroundImage =
-              "url(./img/bam.png)";
-            brokenStatki.push(Sx + Sy);
-          } else {
-            //Nie trafiłem
-            document.getElementById(strzaly[s]).style.backgroundImage =
-              "url(./img/pudlo.png)";
-          }
-        }, 3500);
+          //opóźnienie na 3,5 sekundy
+          setTimeout(function () {
+            //Przyrównuje wyciągniete ID do tabeli statków
+            if (statki.includes(Sx + Sy)) {
+              //Trafiłem
+              document.getElementById(strzaly[s]).style.backgroundImage =
+                "url(./img/bam.png)";
+              explosion.play();
+              brokenStatki.push(Sx + Sy);
+            } else {
+              //Nie trafiłem
+              document.getElementById(strzaly[s]).style.backgroundImage =
+                "url(./img/pudlo.png)";
+            }
+            areWeGood = 1;
+          }, 3500);
+        }
+        //Możemy przekazać gre przeciwnikowi
       }
-      //Możemy przekazać gre przeciwnikowi
-      areWeGood = 1;
     } else {
       //Gracz ma powyżej zeru rakiet
       alert("Wykorzystaj wszystkie pociski!");
@@ -270,26 +295,29 @@ function pal() {
   } //kopia dla listy pierwszej nie bede już pisał niżej
   else {
     if (rakiety == 0) {
-      hurt.play();
-      for (let s = 0; s < strzaly.length; s++) {
-        let Sx = strzaly[s].charAt(1);
-        let Sy = strzaly[s].charAt(2);
-        shotsFired();
-        document.getElementById(strzaly[s]).style.backgroundImage =
-          "url(./img/pal.png)";
-        setTimeout(function () {
-          if (statki2.includes(Sx + Sy)) {
-            document.getElementById(strzaly[s]).style.backgroundImage =
-              "url(./img/bam.png)";
-            explosion.play();
-            brokenStatki2.push(Sx + Sy);
-          } else {
-            document.getElementById(strzaly[s]).style.backgroundImage =
-              "url(./img/pudlo.png)";
-          }
-        }, 4000);
+      if (needReload == 0) {
+        needReload = 1;
+        hurt.play();
+        for (let s = 0; s < strzaly.length; s++) {
+          let Sx = strzaly[s].charAt(1);
+          let Sy = strzaly[s].charAt(2);
+          shotsFired();
+          document.getElementById(strzaly[s]).style.backgroundImage =
+            "url(./img/pal.png)";
+          setTimeout(function () {
+            if (statki2.includes(Sx + Sy)) {
+              document.getElementById(strzaly[s]).style.backgroundImage =
+                "url(./img/bam.png)";
+              explosion.play();
+              brokenStatki2.push(Sx + Sy);
+            } else {
+              document.getElementById(strzaly[s]).style.backgroundImage =
+                "url(./img/pudlo.png)";
+            }
+            areWeGood = 1;
+          }, 3500);
+        }
       }
-      areWeGood = 1;
     } else {
       alert("Wykorzystaj wszystkie pociski!");
     }
@@ -464,6 +492,10 @@ function dodajStatek() {
 
         if (dodajStatekCounter == dlugosc) {
           if (rotateShip == 0) {
+            statekHeight = 1;
+            statekWidth = 1;
+            test = "V";
+
             switch (true) {
               case dlugosc == 4 && dodajStatekCounter == 4:
                 counter4--;
@@ -480,9 +512,10 @@ function dodajStatek() {
             }
 
             for (i = 0; i <= dlugosc - 1; i++) {
-              document.getElementById(
-                plansza[xNumber + i] + y
-              ).style.backgroundColor = "gray";
+              // document.getElementById(
+              //   plansza[xNumber + i] + y
+              // ).style.backgroundColor = "gray";
+
               statki.push(plansza[xNumber + i] + y);
               statkiGhost.push(
                 plansza[xNumber + i] + (y - 1),
@@ -498,6 +531,10 @@ function dodajStatek() {
           }
           //obrot poziomy
           else if (rotateShip == 1) {
+            statekHeight = 1;
+            statekWidth = 1;
+            test = "H";
+
             switch (true) {
               case dlugosc == 4:
                 counter4--;
@@ -514,9 +551,11 @@ function dodajStatek() {
             }
 
             for (i = 0; i <= dlugosc - 1; i++) {
-              document.getElementById(
-                plansza[xNumber] + (y + i)
-              ).style.backgroundColor = "gray";
+              // document.getElementById(
+              //   plansza[xNumber] + (y + i)
+              // ).style.backgroundColor = "gray";
+
+              plansza[xNumber] + (y + 1);
               statki.push(plansza[xNumber] + (y + i));
               statkiGhost.push(
                 plansza[xNumber] + (y - 1),
@@ -530,6 +569,7 @@ function dodajStatek() {
               );
             }
           }
+          statekSize = document.getElementById(xy).getBoundingClientRect();
         }
 
         counter = 1;
@@ -810,7 +850,7 @@ function zmianaPlanszy() {
       document.getElementById(brokenStatki2[h]).style.backgroundColor = "red";
     }
   }
-
+  needReload = 0;
   //Zmiana planszy skończona, czekamy aż gracz zatwierdzi strzały aby ponownie zmienić plansze.
 }
 
@@ -951,6 +991,7 @@ function gameMode(x) {
       start.style.display = "none";
       break;
     case 2:
+      document.dispatchEvent(szblix);
       Multi.style.display = "flex";
       Local.style.display = "none";
       start.style.display = "none";

@@ -42,3 +42,5 @@ multi = 0;
 whoGames = 0;
 
 Gamer = 0;
+
+needReload = 0;

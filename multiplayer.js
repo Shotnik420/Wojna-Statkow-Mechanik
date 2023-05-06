@@ -1,7 +1,7 @@
 const wysylamy = new Event("sendTheData");
 const dawajGracza = new Event("getThePlayer");
 const dawajDane = new Event("getTheData");
-
+const szblix = new Event("dawajSzablon");
 setInterval(() => {
   if (multi > 0) {
     //Pokaż przycisk "Kontynuuj"

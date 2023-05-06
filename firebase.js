@@ -21,8 +21,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
-document.querySelector("#FUCKYOU").addEventListener("click", sendData);
-document.querySelector("#FUCKYOU2").addEventListener("click", getData);
+
 import {
   getDatabase,
   set,
@@ -41,6 +40,9 @@ document.addEventListener("getThePlayer", (e) => {
 });
 document.addEventListener("getTheData", (e) => {
   getData();
+});
+document.addEventListener("dajSzablon", (e) => {
+  szablon();
 });
 function sendData() {
   set(ref(db, "Game"), {
@@ -161,4 +163,31 @@ function getData() {
       console.log("myballllls!!!");
       zmianaPlanszy();
     });
+}
+
+function szablon() {
+  set(ref(db, "Game"), {
+    Gracz: "1",
+    Statki1: [statki],
+    Statki2: [statki2],
+    StatkiGhost1: [statkiGhost],
+    StatkiGhost2: [statkiGhost2],
+    StrzalyMem: [strzalyMem],
+    StrzalyMem2: [strzalyMem2],
+    BrokenStatki: [brokenStatki],
+    BrokenStatki2: [brokenStatki2],
+    Counter1: counter1,
+    Counter2: counter2,
+    Counter3: counter3,
+    Counter4: counter4,
+    Counter2_1: counter2_1,
+    Counter2_2: counter2_2,
+    Counter2_3: counter2_3,
+    Counter2_4: counter2_4,
+    KillMode: killmode,
+  }).then(() => {
+    console.log("pakiet wysłany");
+
+    return false;
+  });
 }
