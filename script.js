@@ -489,13 +489,9 @@ function dodajStatek() {
           }
         }
         //obrot statku pionowy
-
+        statekSize = document.getElementById(xy).getBoundingClientRect();
         if (dodajStatekCounter == dlugosc) {
           if (rotateShip == 0) {
-            statekHeight = 1;
-            statekWidth = 1;
-            test = "V";
-
             switch (true) {
               case dlugosc == 4 && dodajStatekCounter == 4:
                 counter4--;
@@ -516,6 +512,40 @@ function dodajStatek() {
               //   plansza[xNumber + i] + y
               // ).style.backgroundColor = "gray";
 
+              switch (true) {
+                case dlugosc == 1:
+                  document.getElementById(xy).innerHTML +=
+                    "<div class='statek' style='background-Image: url(img/statki/jedynkaV.png); width:" +
+                    statekSize.width +
+                    "px; height: " +
+                    statekSize.height +
+                    "px;'></div>";
+                  break;
+                case dlugosc == 2:
+                  document.getElementById(xy).innerHTML +=
+                    "<div class='statek' style='background-Image: url(img/statki/dwojkaV.png); width:" +
+                    statekSize.width +
+                    "px; height: " +
+                    statekSize.height * 2 +
+                    "px;'></div>";
+                  break;
+                case dlugosc == 3:
+                  document.getElementById(xy).innerHTML +=
+                    "<div class='statek' style='background-Image: url(img/statki/trojkaV.png); width:" +
+                    statekSize.width +
+                    "px; height: " +
+                    statekSize.height * 3 +
+                    "px;'></div>";
+                  break;
+                case dlugosc == 4:
+                  document.getElementById(xy).innerHTML +=
+                    "<div class='statek' style='background-Image: url(img/statki/czworkaV.png); width:" +
+                    statekSize.width +
+                    "px; height: " +
+                    statekSize.height * 4 +
+                    "px;'></div>";
+                  break;
+              }
               statki.push(plansza[xNumber + i] + y);
               statkiGhost.push(
                 plansza[xNumber + i] + (y - 1),
@@ -555,6 +585,41 @@ function dodajStatek() {
               //   plansza[xNumber] + (y + i)
               // ).style.backgroundColor = "gray";
 
+              switch (true) {
+                case dlugosc == 1:
+                  document.getElementById(xy).innerHTML +=
+                    "<div class='statek' style='background-Image: url(img/statki/jedynkaH.png); width:" +
+                    statekSize.width +
+                    "px; height: " +
+                    statekSize.height +
+                    "px;'></div>";
+                  break;
+                case dlugosc == 2:
+                  document.getElementById(xy).innerHTML +=
+                    "<div class='statek' style='background-Image: url(img/statki/dwojkaH.png); width:" +
+                    statekSize.width * 2 +
+                    "px; height: " +
+                    statekSize.height +
+                    "px;'></div>";
+                  break;
+                case dlugosc == 3:
+                  document.getElementById(xy).innerHTML +=
+                    "<div class='statek' style='background-Image: url(img/statki/trojkaH.png); width:" +
+                    statekSize.width * 3 +
+                    "px; height: " +
+                    statekSize.height +
+                    "px;'></div>";
+                  break;
+                case dlugosc == 4:
+                  document.getElementById(xy).innerHTML +=
+                    "<div class='statek' style='background-Image: url(img/statki/czworkaH.png); width:" +
+                    statekSize.width * 4 +
+                    "px; height: " +
+                    statekSize.height +
+                    "px;'></div>";
+                  break;
+              }
+
               plansza[xNumber] + (y + 1);
               statki.push(plansza[xNumber] + (y + i));
               statkiGhost.push(
@@ -569,7 +634,6 @@ function dodajStatek() {
               );
             }
           }
-          statekSize = document.getElementById(xy).getBoundingClientRect();
         }
 
         counter = 1;
