@@ -48,7 +48,7 @@ function startGame(x) {
   for (let i = 0; i < lokalnebuts.length; i++) {
     lokalnebuts[i].style.display = "block";
   }
-  const onlinebuts = document.querySelectorAll(".lokalnyB");
+  const onlinebuts = document.querySelectorAll(".onlineB");
   for (let i = 0; i < lokalnebuts.length; i++) {
     lokalnebuts[i].style.display = "block";
   }
@@ -653,7 +653,6 @@ function dodajStatek() {
               statki2.includes(plansza[xNumber + j] + y) ||
               statkiGhost2.includes(plansza[xNumber + j] + y)
             ) {
-              alert("statki nie moga sie stykac");
               dodajStatekCounter2 = 0;
               break;
             } else {
@@ -672,7 +671,6 @@ function dodajStatek() {
               statki2.includes(plansza[xNumber] + (y + j)) ||
               statkiGhost2.includes(plansza[xNumber] + (y + j))
             ) {
-              alert("statki nie moga sie stykac");
               dodajStatekCounter2 = 0;
               break;
             } else {
@@ -686,6 +684,7 @@ function dodajStatek() {
         }
         //obrot statku pionowy
         //Miro ma małego chuja lol
+        statekSize = document.getElementById(xy).getBoundingClientRect();
         if (dodajStatekCounter2 == dlugosc) {
           if (rotateShip == 0) {
             switch (true) {
@@ -703,10 +702,41 @@ function dodajStatek() {
                 break;
             }
 
+            switch (true) {
+              case dlugosc == 1:
+                document.getElementById(xy).innerHTML +=
+                  "<div class='statek2' style='background-Image: url(img/statki/jedynkaV.png); width:" +
+                  statekSize.width +
+                  "px; height: " +
+                  statekSize.height +
+                  "px;'></div>";
+                break;
+              case dlugosc == 2:
+                document.getElementById(xy).innerHTML +=
+                  "<div class='statek2' style='background-Image: url(img/statki/dwojkaV.png); width:" +
+                  statekSize.width +
+                  "px; height: " +
+                  statekSize.height * 2 +
+                  "px;'></div>";
+                break;
+              case dlugosc == 3:
+                document.getElementById(xy).innerHTML +=
+                  "<div class='statek2' style='background-Image: url(img/statki/trojkaV.png); width:" +
+                  statekSize.width +
+                  "px; height: " +
+                  statekSize.height * 3 +
+                  "px;'></div>";
+                break;
+              case dlugosc == 4:
+                document.getElementById(xy).innerHTML +=
+                  "<div class='statek2' style='background-Image: url(img/statki/czworkaV.png); width:" +
+                  statekSize.width +
+                  "px; height: " +
+                  statekSize.height * 4 +
+                  "px;'></div>";
+                break;
+            }
             for (i = 0; i <= dlugosc - 1; i++) {
-              document.getElementById(
-                plansza[xNumber + i] + y
-              ).style.backgroundColor = "gray";
               statki2.push(plansza[xNumber + i] + y);
               statkiGhost2.push(
                 plansza[xNumber + i] + (y - 1),
@@ -736,10 +766,42 @@ function dodajStatek() {
                 counter2_1--;
                 break;
             }
+
+            switch (true) {
+              case dlugosc == 1:
+                document.getElementById(xy).innerHTML +=
+                  "<div class='statek2' style='background-Image: url(img/statki/jedynkaH.png); width:" +
+                  statekSize.width +
+                  "px; height: " +
+                  statekSize.height +
+                  "px;'></div>";
+                break;
+              case dlugosc == 2:
+                document.getElementById(xy).innerHTML +=
+                  "<div class='statek2' style='background-Image: url(img/statki/dwojkaH.png); width:" +
+                  statekSize.width * 2 +
+                  "px; height: " +
+                  statekSize.height +
+                  "px;'></div>";
+                break;
+              case dlugosc == 3:
+                document.getElementById(xy).innerHTML +=
+                  "<div class='statek2' style='background-Image: url(img/statki/trojkaH.png); width:" +
+                  statekSize.width * 3 +
+                  "px; height: " +
+                  statekSize.height +
+                  "px;'></div>";
+                break;
+              case dlugosc == 4:
+                document.getElementById(xy).innerHTML +=
+                  "<div class='statek2' style='background-Image: url(img/statki/czworkaH.png); width:" +
+                  statekSize.width * 4 +
+                  "px; height: " +
+                  statekSize.height +
+                  "px;'></div>";
+                break;
+            }
             for (i = 0; i <= dlugosc - 1; i++) {
-              document.getElementById(
-                plansza[xNumber] + (y + i)
-              ).style.backgroundColor = "gray";
               statki2.push(plansza[xNumber] + (y + i));
               statkiGhost2.push(
                 plansza[xNumber] + (y - 1),
@@ -776,8 +838,10 @@ function zmianaPlanszy() {
   document.getElementById("onHold1").style.display = "none";
   document.getElementById("onHold2").style.display = "none";
   document.getElementById("onHold4").style.display = "none";
-  if (killmode == 1) {
-  }
+  wszystkieStatki = document.querySelectorAll(".statek");
+  wszystkieStatki2 = document.querySelectorAll(".statek2");
+  wszystkieStatki.forEach((element) => (element.style.display = "none"));
+  wszystkieStatki2.forEach((element) => (element.style.display = "none"));
   //Jesteśmy gotowi na zmiane planszy!
   if (areWeGood == 1) {
     //Zaczynamy! Blokuję zmianę planszy
@@ -899,19 +963,18 @@ function zmianaPlanszy() {
       child.style.backgroundColor = "rgba(0, 0, 0, 0)";
     }
   }
+
   if (lista == 1) {
-    for (let z = 0; z < statki.length; z++) {
-      document.getElementById(statki[z]).style.backgroundColor = "gray";
-    }
+    wszystkieStatki.forEach((element) => (element.style.display = "block"));
     for (let h = 0; h < brokenStatki.length; h++) {
-      document.getElementById(brokenStatki[h]).style.backgroundColor = "red";
+      document.getElementById(brokenStatki[h]).style.backgroundColor =
+        "rgba(255, 0, 0, 0.3)";
     }
   } else if (lista == 2) {
-    for (let z = 0; z < statki2.length; z++) {
-      document.getElementById(statki2[z]).style.backgroundColor = "gray";
-    }
+    wszystkieStatki2.forEach((element) => (element.style.display = "block"));
     for (let h = 0; h < brokenStatki2.length; h++) {
-      document.getElementById(brokenStatki2[h]).style.backgroundColor = "red";
+      document.getElementById(brokenStatki2[h]).style.backgroundColor =
+        "rgba(255, 0, 0, 0.3)";
     }
   }
   needReload = 0;

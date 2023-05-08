@@ -1,7 +1,7 @@
 const wysylamy = new Event("sendTheData");
 const dawajGracza = new Event("getThePlayer");
 const dawajDane = new Event("getTheData");
-const szblix = new Event("dawajSzablon");
+const szblix = new Event("dajSzablon");
 setInterval(() => {
   if (multi > 0) {
     //Pokaż przycisk "Kontynuuj"
@@ -23,19 +23,21 @@ function dZP() {
 }
 //Send & ZmienPlansze()
 function sZP() {
-  if (lista == 1) {
-    for (let i = 0; i < strzaly.length; i++) {
-      strzalyMem.push(strzaly[i]);
+  if (areWeGood == 1) {
+    if (lista == 1) {
+      for (let i = 0; i < strzaly.length; i++) {
+        strzalyMem.push(strzaly[i]);
+      }
+    } else if (lista == 2) {
+      for (let i = 0; i < strzaly.length; i++) {
+        strzalyMem2.push(strzaly[i]);
+      }
     }
-  } else if (lista == 2) {
-    for (let i = 0; i < strzaly.length; i++) {
-      strzalyMem2.push(strzaly[i]);
-    }
+    strzaly.splice(0, strzaly.length);
+    fuckTheNan();
+    console.log("send data");
+    document.dispatchEvent(wysylamy);
   }
-  strzaly.splice(0, strzaly.length);
-  fuckTheNan();
-  console.log("send data");
-  document.dispatchEvent(wysylamy);
 }
 //Funckja z ekranem ładowania ale dla multiplayera
 function holUpMulti() {

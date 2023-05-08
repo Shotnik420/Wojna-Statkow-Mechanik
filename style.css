@@ -54,12 +54,19 @@ body {
 }
 
 .statek {
+  z-index: 3;
   position: absolute;
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
 }
-
+.statek2 {
+  z-index: 3;
+  position: absolute;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
 .pole2 {
   /* background-color: rgb(91, 75, 75); */
   border: 1px solid #a8ce53;
@@ -370,7 +377,7 @@ body {
   height: 50px;
   top: 2vh;
   opacity: 0;
-  z-index: 1;
+  z-index: 4;
   position: absolute;
   background-image: url("./img/missle.png");
   background-size: 100% 100%;
