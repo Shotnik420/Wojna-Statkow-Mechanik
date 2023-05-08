@@ -88,6 +88,7 @@ const setupPhase1 = setInterval(() => {
       document.getElementById("fightContainer").style.display = "flex";
     }
     stopSetupPhase();
+
     areWeGood = 1;
   } else if (
     counter2_1 == 4 &&
@@ -290,7 +291,7 @@ function pal() {
       }
     } else {
       //Gracz ma powyżej zeru rakiet
-      alert("Wykorzystaj wszystkie pociski!");
+      alertBox("Wykorzystaj wszystkie pociski!");
     }
   } //kopia dla listy pierwszej nie bede już pisał niżej
   else {
@@ -319,7 +320,7 @@ function pal() {
         }
       }
     } else {
-      alert("Wykorzystaj wszystkie pociski!");
+      alertBox("Wykorzystaj wszystkie pociski!");
     }
   }
 }
@@ -463,11 +464,13 @@ function dodajStatek() {
               statkiGhost.includes(plansza[xNumber + j] + y)
             ) {
               dodajStatekCounter = 0;
+              alertBox("Statki nie mogą się stykać!");
               break;
             } else {
               if (xNumber + dlugosc <= 10) {
                 dodajStatekCounter++;
               } else {
+                alertBox("Statki muszą być na planszy!");
                 break;
               }
             }
@@ -478,11 +481,13 @@ function dodajStatek() {
               statkiGhost.includes(plansza[xNumber] + (y + j))
             ) {
               dodajStatekCounter = 0;
+              alertBox("Statki nie mogą się stykać!");
               break;
             } else {
               if (y + dlugosc <= 10) {
                 dodajStatekCounter++;
               } else {
+                alertBox("Statki muszą być na planszy!");
                 break;
               }
             }
@@ -654,14 +659,13 @@ function dodajStatek() {
               statkiGhost2.includes(plansza[xNumber + j] + y)
             ) {
               dodajStatekCounter2 = 0;
+              alertBox("Statki nie mogą się stykać!");
               break;
             } else {
               if (xNumber + dlugosc <= 10) {
                 dodajStatekCounter2++;
-                switch (true) {
-                  case dlugosc == 3:
-                }
               } else {
+                alertBox("Statki muszą być na planszy!");
                 break;
               }
             }
@@ -672,11 +676,13 @@ function dodajStatek() {
               statkiGhost2.includes(plansza[xNumber] + (y + j))
             ) {
               dodajStatekCounter2 = 0;
+              alertBox("Statki nie mogą się stykać!");
               break;
             } else {
               if (y + dlugosc <= 10) {
                 dodajStatekCounter2++;
               } else {
+                alertBox("Statki muszą być na planszy!");
                 break;
               }
             }
@@ -1031,6 +1037,11 @@ function deb() {
   counter2_2 = 0;
   counter2_3 = 0;
   counter2_4 = 0;
+  killmode = 1;
+  areWeGood = 1;
+  zmianaPlanszy();
+  areWeGood = 1;
+  zmianaPlanszy();
 }
 
 setInterval(() => {
@@ -1140,6 +1151,8 @@ function holUp() {
           break;
       }
     }
+  } else if (areWeGood == 0) {
+    console.log("test");
   }
 }
 
@@ -1153,3 +1166,12 @@ function shotsFired() {
 }
 
 //Łoochuj
+testcounter = 0;
+function alertBox(text) {
+  document.getElementById("alertBoxText").innerHTML = text;
+  document.getElementById("alertBox").style.animation = "alertBox 2.5s";
+
+  setTimeout(() => {
+    document.getElementById("alertBox").style.animation = "none";
+  }, 2500);
+}

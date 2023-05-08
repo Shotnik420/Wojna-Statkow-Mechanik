@@ -150,8 +150,9 @@ body {
   display: none;
   align-items: center;
   justify-content: space-evenly;
-  border: #e0d8d5 solid 10px;
-  background-color: #80716b;
+  background-image: url(img/dashboard.jpg);
+  border-radius: 1vh;
+  background-size: 100% 100%;
 }
 
 #holder {
@@ -286,7 +287,7 @@ body {
 #dwojka,
 #trojka,
 #czworka {
-  background-color: rgba(0, 82, 31, 0.5);
+  background-color: rgba(0, 82, 31, 0.6);
   border-radius: 1vh;
 }
 
@@ -357,6 +358,28 @@ body {
 .buon2 {
   padding: 2vw 3vw;
 }
+
+#missleContainer {
+  height: 6vh;
+  width: 5vh;
+  background-color: rgba(0, 82, 31, 0.9);
+  border-radius: 1vh;
+  background-image: url(img/missle.png);
+  background-size: 20%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+span {
+  height: 6vh;
+  width: 5vh;
+  background-color: rgba(0, 82, 31, 0.9);
+  border-radius: 1vh;
+  text-align: center;
+  color: white;
+  line-height: 6vh;
+  font-size: 2vh;
+}
+
 #onHold1--button:hover {
   transform: scale(105%);
   background-color: gray;
@@ -411,9 +434,11 @@ body {
   top: 2vh;
   opacity: 0;
   z-index: 4;
-  position: absolute;
+  position: relative;
   background-image: url("./img/missle.png");
-  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
   animation: twat 1.5s ease-in;
 }
 @keyframes animacjaWody {
@@ -449,6 +474,20 @@ body {
   }
 }
 
+@keyframes alertBox {
+  0% {
+    left: -30vh;
+  }
+  20% {
+    left: 3vh;
+  }
+  80% {
+    left: 3vh;
+  }
+  100% {
+    left: -30vh;
+  }
+}
 #boobies {
   width: 20px;
   height: 50px;
@@ -458,6 +497,7 @@ body {
   width: 60px;
   height: 60px;
   background-color: gray;
+  border-radius: 3vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -466,6 +506,7 @@ body {
   width: 60px;
   height: 60px;
   background-color: red;
+  border-radius: 3vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -473,4 +514,28 @@ body {
 .lokalnyB,
 .onlineB {
   display: none;
+}
+
+#alertBox {
+  position: absolute;
+  top: 3vh;
+  left: -30vh;
+
+  height: 6vh;
+  min-width: 30vh;
+  font-size: 1.5vh;
+
+  background-color: rgb(175, 47, 47);
+  border-radius: 3vh;
+  line-height: 6vh;
+  text-align: center;
+  color: white;
+  background-image: url(img/alertIcon.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: -0.5vh;
+  z-index: 5;
+}
+#alertBox p {
+  margin-left: 3vh;
 }

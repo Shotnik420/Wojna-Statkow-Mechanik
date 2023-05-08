@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="./style.css" />
   </head>
   <body>
+    <div id="alertBox"><p id="alertBoxText">Wykorzystaj wszystkie pociski!</p></div>
     <div id="mainMenu">
       <div id="logo"></div>
       <div id="start">
@@ -111,16 +112,17 @@
       </div>
       <div>
         <div id="fightContainer">
-          <div class="buon2 lokalnyB" id="button" onclick="holUp()">Kontynuuj</div>
-          <div class="buon2 onlineB" id="button" onclick="sZP()">Kontynuuj</div>
-          <div class="buon2" id="button" onclick="pal()">Zatwierdz</div>
-          <img id="boobies" src="./img/missle.png"/> <span id="rocketCounter">3</span></p>
+          <div class=" lokalnyB" id="button" onclick="holUp()" >Kontynuuj</div>
+          <div class=" onlineB" id="button" onclick="sZP()">Kontynuuj</div>
+          <div  id="button" onclick="pal()">Zatwierdz</div>
+          <div id="missleContainer"></div>
+           <span id="rocketCounter">3</span></p>
           <div id="fCounter"></div>
           <div id="eCounter"></div>
         </div>
         <div id="buonContainer">
-          <div class="lokalnyB" id="button" onclick="holUp()">Kontynuuj</div>
-          <div class="buon2 onlineB" id="button"  onclick="sZP()">Kontynuuj</div>
+          <div class="lokalnyB" id="button" onclick="holUp()" >Kontynuuj</div>
+          <div class=" onlineB" id="button"  onclick="sZP()">Kontynuuj</div>
           <div class="buon2 jedynka" id="jedynka" onclick="wyborStatku(1)">
             
           </div>
