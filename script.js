@@ -914,18 +914,18 @@ function zmianaPlanszy() {
     //Jeszcze nie strzelamy, albo już skończyliśmy
     if (multi == 0) {
       if (lista == 1) {
-        rakiety = rakietyCap2;
+        rakiety = 3;
         lista++;
       } else if (lista == 2) {
-        rakiety = rakietyCap;
+        rakiety = 3;
         lista--;
       }
     }
     if (multi !== 0) {
       if (lista == 1) {
-        rakiety = rakietyCap2;
+        rakiety = 3;
       } else if (lista == 2) {
-        rakiety = rakietyCap;
+        rakiety = 3;
       }
 
       switch (lista) {
