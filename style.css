@@ -138,6 +138,7 @@ body {
   border-radius: 0.2vh;
   border: 0.4vh solid #e8ffd8;
   transition: 0.3s;
+  user-select: none;
 }
 
 #button:hover {
@@ -367,7 +368,7 @@ body {
   background-color: rgba(0, 82, 31, 0.9);
   border-radius: 1vh;
   background-image: url(img/missle.png);
-  background-size: 50% 100%;
+  background-size: 30% 100%;
   background-repeat: no-repeat;
   background-position: center;
 }

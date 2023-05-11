@@ -301,10 +301,11 @@ function pal() {
       if (needReload == 0) {
         needReload = 1;
         hurt.play();
+        shotsFired();
         for (let s = 0; s < strzaly.length; s++) {
           let Sx = strzaly[s].charAt(1);
           let Sy = strzaly[s].charAt(2);
-          shotsFired();
+
           document.getElementById(strzaly[s]).style.backgroundImage =
             "url(./img/pal.png)";
           setTimeout(function () {
@@ -850,6 +851,7 @@ function zmianaPlanszy() {
   wszystkieStatki2 = document.querySelectorAll(".statek2");
   wszystkieStatki.forEach((element) => (element.style.display = "none"));
   wszystkieStatki2.forEach((element) => (element.style.display = "none"));
+
   //Jesteśmy gotowi na zmiane planszy!
   if (areWeGood == 1) {
     //Zaczynamy! Blokuję zmianę planszy
@@ -1141,20 +1143,21 @@ function gameMode(x) {
 
 function holUp() {
   if (areWeGood == 1) {
-    if (multi == 0) {
-      Uno = document.getElementById("onHold1");
-      Duo = document.getElementById("onHold2");
-      switch (lista) {
-        case 1:
-          Uno.style.display = "flex";
-          break;
-        case 2:
-          Duo.style.display = "flex";
-          break;
-      }
+    Uno = document.getElementById("onHold1");
+    Duo = document.getElementById("onHold2");
+    var boobies = document.querySelectorAll(".missle");
+    boobies.forEach((element) => {
+      element.remove();
+    });
+    switch (lista) {
+      case 1:
+        Uno.style.display = "flex";
+        break;
+      case 2:
+        Duo.style.display = "flex";
+        break;
     }
   } else if (areWeGood == 0) {
-    console.log("test");
   }
 }
 
