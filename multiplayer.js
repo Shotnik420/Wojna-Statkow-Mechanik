@@ -39,6 +39,9 @@ function sZP() {
     console.log("send data");
     document.dispatchEvent(wysylamy);
   }
+  else{
+    
+  }
 }
 //Funckja z ekranem ładowania ale dla multiplayera
 function holUpMulti() {
