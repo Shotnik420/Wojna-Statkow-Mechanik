@@ -44,7 +44,9 @@ body {
   /* gap: 3px; */
   z-index: 0;
 }
-
+#plansza2 > * {
+  max-height: 7.1vh;
+}
 .pole {
   /* background-color: rgb(91, 75, 75); */
   border: 1px solid black;
@@ -365,7 +367,7 @@ body {
   background-color: rgba(0, 82, 31, 0.9);
   border-radius: 1vh;
   background-image: url(img/missle.png);
-  background-size: 20%;
+  background-size: 50% 100%;
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -439,7 +441,7 @@ span {
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-  animation: twat 1.5s ease-in;
+  animation: twat 3.5s ease-in;
 }
 @keyframes animacjaWody {
   0% {

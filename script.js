@@ -50,7 +50,7 @@ function startGame(x) {
   }
   const onlinebuts = document.querySelectorAll(".onlineB");
   for (let i = 0; i < lokalnebuts.length; i++) {
-    lokalnebuts[i].style.display = "block";
+    onlinebuts[i].style.display = "none";
   }
   if (x > 0) {
     for (let i = 0; i < onlinebuts.length; i++) {
@@ -260,12 +260,13 @@ function pal() {
       if (needReload == 0) {
         needReload = 1;
         hurt.play();
+        shotsFired();
         //Sprawdźmy trafienia, poniższy kod działa na każdy rekord w tabeli 'strzały'.
         for (let s = 0; s < strzaly.length; s++) {
           //Wyciągam 2 i 3 litere z RID komórki radaru
           let Sx = strzaly[s].charAt(1);
           let Sy = strzaly[s].charAt(2);
-          shotsFired();
+
           //Zmiana na powiedzmy "bufor" animacje
           document.getElementById(strzaly[s]).style.backgroundImage =
             "url(./img/pal.png)";
@@ -287,6 +288,7 @@ function pal() {
             areWeGood = 1;
           }, 3500);
         }
+
         //Możemy przekazać gre przeciwnikowi
       }
     } else {
@@ -1157,11 +1159,11 @@ function holUp() {
 }
 
 function shotsFired() {
+  console.log(strzaly.length);
   for (let i = 0; i < strzaly.length; i++) {
     var strzelecID = strzaly[i];
-    var Stx = strzelecID.charAt(1);
-    var Sty = strzelecID.charAt(2);
-    document.getElementById(Stx + Sty).innerHTML += "<div  id='missle' />";
+    console.log("Spawning rocket: " + strzelecID);
+    document.getElementById(strzelecID).innerHTML += "<div  id='missle' />";
   }
 }
 
