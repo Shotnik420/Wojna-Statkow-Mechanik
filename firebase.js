@@ -44,8 +44,11 @@ document.addEventListener("getTheData", (e) => {
 document.addEventListener("dajSzablon", (e) => {
   szablon();
 });
+document.addEventListener("szukajGry", (e) => {
+  szukaj();
+});
 function sendData() {
-  set(ref(db, "Game"), {
+  set(ref(db, "Game/" + klucz), {
     Gracz: Gamer,
     Statki1: [statki],
     Statki2: [statki2],
@@ -76,97 +79,96 @@ function sendData() {
 }
 function getPlayer() {
   const duparef = ref(db);
-  get(child(duparef, "Game/Gracz")).then((snapshot) => {
+  get(child(duparef, "Game/" + klucz + "/Gracz")).then((snapshot) => {
     whoGames = snapshot.val();
   });
 }
 function getData() {
   const dbref = ref(db);
   console.log("getting data");
-  get(child(dbref, "Game/Statki1/0")).then((snapshot) => {
+  get(child(dbref, "Game/" + klucz + "/Statki1/0")).then((snapshot) => {
     statki = [];
     snapshot.forEach((childSnapshot) => {
       statki.push(childSnapshot.val());
     });
   });
-  get(child(dbref, "Game/Statki2/0")).then((snapshot) => {
+  get(child(dbref, "Game/" + klucz + "/Statki2/0")).then((snapshot) => {
     statki2 = [];
     snapshot.forEach((childSnapshot) => {
       statki2.push(childSnapshot.val());
     });
   });
-  get(child(dbref, "Game/StrzalyMem/0")).then((snapshot) => {
+  get(child(dbref, "Game/" + klucz + "/StrzalyMem/0")).then((snapshot) => {
     strzalyMem = [];
     snapshot.forEach((childSnapshot) => {
       strzalyMem.push(childSnapshot.val());
     });
   });
-  get(child(dbref, "Game/StrzalyMem2/0")).then((snapshot) => {
+  get(child(dbref, "Game/" + klucz + "/StrzalyMem2/0")).then((snapshot) => {
     strzalyMem2 = [];
     snapshot.forEach((childSnapshot) => {
       strzalyMem2.push(childSnapshot.val());
     });
   });
-  get(child(dbref, "Game/StatkiGhost1/0")).then((snapshot) => {
+  get(child(dbref, "Game/" + klucz + "/StatkiGhost1/0")).then((snapshot) => {
     statkiGhost = [];
     snapshot.forEach((childSnapshot) => {
       statkiGhost.push(childSnapshot.val());
     });
   });
-  get(child(dbref, "Game/StatkiGhost2/0")).then((snapshot) => {
+  get(child(dbref, "Game/" + klucz + "/StatkiGhost2/0")).then((snapshot) => {
     statkiGhost2 = [];
     snapshot.forEach((childSnapshot) => {
       statkiGhost2.push(childSnapshot.val());
     });
   });
-  get(child(dbref, "Game/BrokenStatki/0")).then((snapshot) => {
+  get(child(dbref, "Game/" + klucz + "/BrokenStatki/0")).then((snapshot) => {
     brokenStatki = [];
     snapshot.forEach((childSnapshot) => {
       brokenStatki.push(childSnapshot.val());
     });
   });
-  get(child(dbref, "Game/BrokenStatki2/0")).then((snapshot) => {
+  get(child(dbref, "Game/" + klucz + "/BrokenStatki2/0")).then((snapshot) => {
     brokenStatki2 = [];
     snapshot.forEach((childSnapshot) => {
       brokenStatki2.push(childSnapshot.val());
     });
   });
-  get(child(dbref, "Game/Counter1")).then((snapshot) => {
+  get(child(dbref, "Game/" + klucz + "/Counter1")).then((snapshot) => {
     counter1 = snapshot.val();
   });
-  get(child(dbref, "Game/Counter2")).then((snapshot) => {
+  get(child(dbref, "Game/" + klucz + "/Counter2")).then((snapshot) => {
     counter2 = snapshot.val();
   });
-  get(child(dbref, "Game/Counter3")).then((snapshot) => {
+  get(child(dbref, "Game/" + klucz + "/Counter3")).then((snapshot) => {
     counter3 = snapshot.val();
   });
-  get(child(dbref, "Game/Counter4")).then((snapshot) => {
+  get(child(dbref, "Game/" + klucz + "/Counter4")).then((snapshot) => {
     counter4 = snapshot.val();
   });
-  get(child(dbref, "Game/Counter2_1")).then((snapshot) => {
+  get(child(dbref, "Game/" + klucz + "/Counter2_1")).then((snapshot) => {
     counter2_1 = snapshot.val();
   });
-  get(child(dbref, "Game/Counter2_2")).then((snapshot) => {
+  get(child(dbref, "Game/" + klucz + "/Counter2_2")).then((snapshot) => {
     counter2_2 = snapshot.val();
   });
-  get(child(dbref, "Game/Counter2_3")).then((snapshot) => {
+  get(child(dbref, "Game/" + klucz + "/Counter2_3")).then((snapshot) => {
     counter2_3 = snapshot.val();
   });
-  get(child(dbref, "Game/Counter2_4")).then((snapshot) => {
+  get(child(dbref, "Game/" + klucz + "/Counter2_4")).then((snapshot) => {
     counter2_4 = snapshot.val();
   });
-  get(child(dbref, "Game/KillMode"))
+  get(child(dbref, "Game/" + klucz + "/KillMode"))
     .then((snapshot) => {
       killmode = snapshot.val();
     })
     .then(() => {
-      console.log("myballllls!!!");
       zmianaPlanszy();
     });
 }
 
 function szablon() {
-  set(ref(db, "Game"), {
+  set(ref(db, "Game/" + klucz), {
     Gracz: "1",
     Statki1: [statki],
     Statki2: [statki2],
@@ -189,5 +191,17 @@ function szablon() {
     console.log("pakiet wysłany");
 
     return false;
+  });
+}
+
+function szukaj() {
+  get(child(ref(db), "Game/" + bitchKlucz + "/Gracz")).then((snapshot) => {
+    if (snapshot.val() !== null) {
+      klucz = bitchKlucz;
+      startGame(2);
+      document.getElementById("onHold6").style.display = "none";
+    } else {
+      document.getElementById("errorLog").style.opacity = 1;
+    }
   });
 }

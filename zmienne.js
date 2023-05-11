@@ -11,7 +11,7 @@ var strzalyMem2 = [];
 var rakiety = 0;
 var brokenStatki = [];
 var brokenStatki2 = [];
-
+klucz = Math.floor(Math.random() * 100000);
 //zmienne
 dlugosc = 0;
 xNumber = 0;

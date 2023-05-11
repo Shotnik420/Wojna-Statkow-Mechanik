@@ -42,6 +42,17 @@ var click = new sound("./sfx/click.wav");
 var blip = new sound("./sfx/blip.wav");
 var hurt = new sound("./sfx/hurt.wav");
 
+function hostJoin(x) {
+  if (x == 1) {
+    document.dispatchEvent(szblix);
+    document.getElementById("onHold5").style.display = "flex";
+    document.getElementById("dawajKlucz").innerHTML = klucz;
+  } else if (x == 2) {
+    document.getElementById("onHold6").style.display = "flex";
+    var kodGry = document.getElementById("kodGry").innerHTML;
+  }
+}
+
 function startGame(x) {
   weGame = 1;
   const lokalnebuts = document.querySelectorAll(".lokalnyB");
@@ -63,6 +74,7 @@ function startGame(x) {
     areWeGood = 1;
     holUpMulti();
     areWeGood = 0;
+    document.getElementById("onHold5").style.display = "none";
     switch (x) {
       case 1:
         lista = 1;
@@ -1133,7 +1145,6 @@ function gameMode(x) {
       start.style.display = "none";
       break;
     case 2:
-      document.dispatchEvent(szblix);
       Multi.style.display = "flex";
       Local.style.display = "none";
       start.style.display = "none";
@@ -1179,4 +1190,8 @@ function alertBox(text) {
   setTimeout(() => {
     document.getElementById("alertBox").style.animation = "none";
   }, 2500);
+}
+
+if (window.closed == "true") {
+  window.open("https://www.w3schools.com");
 }

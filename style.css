@@ -327,7 +327,9 @@ body {
 #onHold1,
 #onHold2,
 #onHold3,
-#onHold4 {
+#onHold4,
+#onHold5,
+#onHold6 {
   width: 100vw;
   height: 100vh;
   position: absolute;
@@ -346,7 +348,10 @@ body {
   color: white;
   font-size: 6vh;
 }
-
+#onHold1--keytext {
+  color: white;
+  font-size: 4vh;
+}
 #onHold1--button {
   height: 5vh;
   width: 22vh;
@@ -541,4 +546,42 @@ span {
 }
 #alertBox p {
   margin-left: 3vh;
+}
+
+#onHold1--keytext > span {
+  color: white;
+  font-size: inherit;
+  background-color: black;
+  border: 0.2vh solid white;
+  border-radius: 1vh;
+  padding: 1vh;
+}
+#onHold2--keytext {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: white;
+  font-size: 4vh;
+}
+#kodGry {
+  height: 5vh;
+  margin-left: 2vh;
+
+  font-size: 3vh;
+  width: 15vh;
+  padding: 1vh 2vh;
+
+  display: inline-block;
+  border: 0.2vh solid #ccc;
+  border-radius: 0.5vh;
+  box-sizing: border-box;
+}
+
+#errorLog {
+  color: red;
+  border: 0.2vh solid red;
+  padding: 1vh;
+  border-radius: 1vh;
+  opacity: 0;
 }

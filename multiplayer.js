@@ -2,6 +2,7 @@ const wysylamy = new Event("sendTheData");
 const dawajGracza = new Event("getThePlayer");
 const dawajDane = new Event("getTheData");
 const szblix = new Event("dajSzablon");
+const szukaj = new Event("szukajGry");
 setInterval(() => {
   if (multi > 0) {
     //Pokaż przycisk "Kontynuuj"
@@ -59,4 +60,13 @@ function fuckTheNan() {
       statkiGhost2.splice(n, 1, "brak");
     }
   }
+}
+function polacz() {
+  bitchKlucz = document.getElementById("kodGry").value;
+  document.dispatchEvent(szukaj);
+}
+function anuluj() {
+  document.getElementById("onHold5").style.display = "none";
+  document.getElementById("onHold6").style.display = "none";
+  gameMode(2);
 }

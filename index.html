@@ -26,10 +26,11 @@
       </div>
       <div id="multi">
         
-        <div onclick="startGame(1)" class="menuButton">Gracz 1</div>
-        <div onclick="startGame(2)" class="menuButton">Gracz 2</div>
+        <div onclick="hostJoin(1)" class="menuButton">Stwórz sesję</div>
+        <div onclick="hostJoin(2)" class="menuButton">Dołącz</div>
         <div onclick="gameMode(0)" class="menuButton">Wroc</div>
       </div>
+      
 
     </div>
     <div id="onHold1">
@@ -47,6 +48,19 @@
     <div id="onHold4">
       <div id="onHold1--text">Oczekiwanie na odpowiedź serwera<span id="ktory"></span></div>
       <div id="onHold1--button" class="multiB" onClick="dZP()">Kontynuuj</div>
+    </div>
+    <div id="onHold5">
+      <div id="onHold1--text">Jesteś hostem</div>
+      <div id="onHold1--keytext">Twój kod to: <span id="dawajKlucz"></span></div>
+      <div id="onHold1--button" class="multiB" onClick="startGame(1)">Kontynuuj</div>
+      <div id="onHold1--button" onclick="anuluj()">Wroc</div>
+    </div>
+    <div id="onHold6">
+      <div id="onHold1--text">Dołącz do gry</div>
+      <div id="onHold2--keytext">Wpisz kod gry: <input type="text" id="kodGry" maxlength="5"/></div>
+      <div id="errorLog" >Niepoprawny kod!</div>
+      <div id="onHold1--button" class="multiB" onClick="polacz()">Połącz</div>
+      <div id="onHold1--button" onclick="anuluj()">Wroc</div>
     </div>
     
     <div id="sortownik">
