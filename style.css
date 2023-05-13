@@ -285,7 +285,38 @@ body {
 #info:hover {
   transform: scale(1.1);
 }
+#github {
+  height: 8vh;
+  width: 8vh;
+  background-color: beige;
+  border-radius: 4vh;
+  position: absolute;
+  right: 8vh;
+  top: 24vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 6vh;
+  font-weight: bold;
+  user-select: none;
+  cursor: pointer;
+  transition: 300ms;
+}
 
+#github:hover {
+  transform: scale(1.1);
+}
+#github > a {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#github > a > img {
+  width: 80%;
+  height: 80%;
+}
 #start {
   display: flex;
   flex-direction: column;
