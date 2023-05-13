@@ -1156,8 +1156,8 @@ function holUp() {
   if (areWeGood == 1) {
     Uno = document.getElementById("onHold1");
     Duo = document.getElementById("onHold2");
-    var boobies = document.querySelectorAll(".missle");
-    boobies.forEach((element) => {
+    var wszystkieStrzaly = document.querySelectorAll(".missle");
+    wszystkieStrzaly.forEach((element) => {
       element.remove();
     });
     switch (lista) {
