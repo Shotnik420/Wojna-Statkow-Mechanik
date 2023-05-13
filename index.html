@@ -10,6 +10,7 @@
   <body>
     <div id="alertBox"><p id="alertBoxText">Wykorzystaj wszystkie pociski!</p></div>
     <div id="mainMenu">
+      <div id="info" onclick="instrukcja()">?</div>
       <div id="logo"></div>
       <div id="start">
         <h2>Wybierz rodzaj rozgrywki</h2>
@@ -53,14 +54,38 @@
       <div id="onHold1--text">Jesteś hostem</div>
       <div id="onHold1--keytext">Twój kod to: <span id="dawajKlucz"></span></div>
       <div id="onHold1--button" class="multiB" onClick="startGame(1)">Kontynuuj</div>
-      <div id="onHold1--button" onclick="anuluj()">Wroc</div>
+      <div id="onHold1--button" onclick="anuluj(2)">Wroc</div>
     </div>
     <div id="onHold6">
       <div id="onHold1--text">Dołącz do gry</div>
       <div id="onHold2--keytext">Wpisz kod gry: <input type="text" id="kodGry" maxlength="5"/></div>
       <div id="errorLog" >Niepoprawny kod!</div>
       <div id="onHold1--button" class="multiB" onClick="polacz()">Połącz</div>
-      <div id="onHold1--button" onclick="anuluj()">Wroc</div>
+      <div id="onHold1--button" onclick="anuluj(2)">Wroc</div>
+    </div>
+    <div id="onHold7">
+      <div id="instrukcja">
+        <h1>Jak grać</h1><p>
+        Na początku rozgrywki rostaw swoje statki, klikając w nie:</p>
+        <ul style="text-indent: 3%;">
+          <li>1 * 4blokowy okręt</li>
+          <li>2 * 3blokowe statki</li>
+          <li>3 * 2blokowe łodzie</li>
+          <li>4 * 1blokowe łódki</li>
+        </ul><br>
+          <p>
+          Po ustaleniu pozycji otrzymasz po 3 rakiety na rundę, które możesz wysłać, klikając w radar, który pojawi ci się po prawej. Pozycje strzałów możesz zmienić klikając w nie drugi raz.</p><br> 
+          <p><b>Wygrywasz po zatopieniu wszyskich statków przeciwnika</b>.</p><br>
+
+          <p>W przypadku gry <b>lokalnej</b>, zacznij grę i zmieniaj się z przeciwnikiem po kliknięciu w przycisk kontynuuj.</p><br>
+
+          <p>W przypadku gry <b>online</b>, zacznij od stworzenia sesji gry (host), lub dołączenia do niej za pomocą kodu (!który się zmienia za każdym odświerzeniem strony!).</p><br>
+          <p>Gra będzie szła tak samo, lecz po kliknięciu w kontynuuj <b>musisz poczekać na zakończenie ruchu przeciwnika</b> (pojawi ci się przycisk do kontynuacji).</p>
+            <br>
+        <p>Autorstwa: <a href= "https://szootnik.pl">Diesel 1.3</a>, <a href= "">Big Mir</a> oraz <a href= "">Balas</a>. Gra napisana na czystym Javascripcie, dostępna do pobrania i edycji <a href="">tutaj.</a></p>
+      </div>
+
+      <div id="onHold1--button" class="multiB" onclick="anuluj()">Kontynuuj</div>
     </div>
     
     <div id="sortownik">
@@ -153,9 +178,7 @@
       </div>
     </div>
 
-    <div id="siurek"></div>
-    <!-- <button id="FUCKYOU">Send nudle</button>
-    <button id="FUCKYOU2">Get nudle</button> -->
+    <div id="kursoor"></div>
     <script src="zmienne.js"></script>
     <script src="script.js"></script>
     <script src="multiplayer.js"></script>

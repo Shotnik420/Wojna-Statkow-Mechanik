@@ -38,9 +38,7 @@ function sZP() {
     fuckTheNan();
     console.log("send data");
     document.dispatchEvent(wysylamy);
-  }
-  else{
-    
+  } else {
   }
 }
 //Funckja z ekranem ładowania ale dla multiplayera
@@ -68,8 +66,9 @@ function polacz() {
   bitchKlucz = document.getElementById("kodGry").value;
   document.dispatchEvent(szukaj);
 }
-function anuluj() {
+function anuluj(x) {
   document.getElementById("onHold5").style.display = "none";
   document.getElementById("onHold6").style.display = "none";
-  gameMode(2);
+  document.getElementById("onHold7").style.display = "none";
+  gameMode(x);
 }

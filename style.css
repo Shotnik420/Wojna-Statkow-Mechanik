@@ -21,7 +21,7 @@ body {
 
 #plansza {
   background-image: url(https://2minutetabletop.com/wp-content/uploads/2019/04/Ocean-sea-water-tile-texture-map-assets-night.jpg);
-  background-size: 150%;
+  background-size: 200%;
   animation: animacjaWody 25s infinite linear;
   background-repeat: no-repeat;
   display: grid;
@@ -138,7 +138,6 @@ body {
   border-radius: 0.2vh;
   border: 0.4vh solid #e8ffd8;
   transition: 0.3s;
-  user-select: none;
 }
 
 #button:hover {
@@ -187,7 +186,7 @@ body {
   /* gap: 3px; */
 }
 
-#siurek {
+#kursoor {
   position: absolute;
   width: 64px;
   height: 64px;
@@ -212,6 +211,7 @@ body {
   color: white;
   border: 1.5px solid black;
   border-collapse: collapse;
+  user-select: none;
 }
 .liczbyPola,
 .literkiPola {
@@ -224,11 +224,28 @@ body {
 
 /* _______________________________________________________________________________________________________________________________________________________________ */
 
+#instrukcja {
+  color: #fff;
+  padding: 10vh;
+}
+#instrukcja > h1 {
+  text-align: center;
+  font-size: 4rem;
+  margin: 5vh;
+}
+#instrukcja > p {
+  text-align: justify;
+  font-size: 1rem;
+}
+#instrukcja > p > a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
 #mainMenu {
   width: 100vw;
   height: 100vh;
 
-  background-image: url(img/mainMenuBg.webp);
   background-repeat: no-repeat;
   background-size: 100% 100%;
 
@@ -247,33 +264,61 @@ body {
   font-size: 4vh;
   color: white;
 }
+#info {
+  height: 8vh;
+  width: 8vh;
+  background-color: beige;
+  border-radius: 4vh;
+  position: absolute;
+  right: 8vh;
+  top: 8vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 6vh;
+  font-weight: bold;
+  user-select: none;
+  cursor: pointer;
+  transition: 300ms;
+}
+
+#info:hover {
+  transform: scale(1.1);
+}
+
 #start {
   display: flex;
   flex-direction: column;
+}
+#start > h2 {
+  text-shadow: 0px 0px 8px rgba(0, 0, 0, 1);
+  font-size: 5vh;
 }
 #start section {
   width: 50vw;
   margin-top: 7vh;
 
   display: flex;
+  color: #000000;
 
-  justify-content: space-evenly;
+  justify-content: space-around;
 }
 
 .menuButton {
   background-color: white;
-  width: 15vh;
+  width: 15vw;
   height: 7vh;
-  color: rgb(0, 0, 0);
+
   font-weight: 700;
 
-  font-size: 2vh;
-
+  font-size: 2.5vh;
+  display: flex;
   background-image: url(img/button.webp);
   background-size: 100% 100%;
   border-radius: 1vh;
-  text-align: center;
-  line-height: 7vh;
+
+  align-items: center;
+  justify-content: center;
 
   transition: 0.3s;
 }
@@ -329,7 +374,8 @@ body {
 #onHold3,
 #onHold4,
 #onHold5,
-#onHold6 {
+#onHold6,
+#onHold7 {
   width: 100vw;
   height: 100vh;
   position: absolute;
@@ -344,14 +390,54 @@ body {
   font-family: "Inter", sans-serif;
 }
 
-#onHold1--text {
-  color: white;
-  font-size: 6vh;
-}
 #onHold1--keytext {
   color: white;
   font-size: 4vh;
 }
+
+#onHold1--keytext > span {
+  color: white;
+  font-size: inherit;
+  background-color: black;
+  border: 0.2vh solid white;
+  border-radius: 1vh;
+  padding: 1vh;
+}
+#onHold2--keytext {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: white;
+  font-size: 4vh;
+}
+#kodGry {
+  height: 5vh;
+  margin-left: 2vh;
+
+  font-size: 3vh;
+  width: 15vh;
+  padding: 1vh 2vh;
+
+  display: inline-block;
+  border: 0.2vh solid #ccc;
+  border-radius: 0.5vh;
+  box-sizing: border-box;
+}
+
+#errorLog {
+  color: red;
+  border: 0.2vh solid red;
+  padding: 1vh;
+  border-radius: 1vh;
+  opacity: 0;
+}
+
+#onHold1--text {
+  color: white;
+  font-size: 6vh;
+}
+
 #onHold1--button {
   height: 5vh;
   width: 22vh;
@@ -373,7 +459,7 @@ body {
   background-color: rgba(0, 82, 31, 0.9);
   border-radius: 1vh;
   background-image: url(img/missle.png);
-  background-size: 30% 100%;
+  background-size: 50% 100%;
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -546,42 +632,4 @@ span {
 }
 #alertBox p {
   margin-left: 3vh;
-}
-
-#onHold1--keytext > span {
-  color: white;
-  font-size: inherit;
-  background-color: black;
-  border: 0.2vh solid white;
-  border-radius: 1vh;
-  padding: 1vh;
-}
-#onHold2--keytext {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  color: white;
-  font-size: 4vh;
-}
-#kodGry {
-  height: 5vh;
-  margin-left: 2vh;
-
-  font-size: 3vh;
-  width: 15vh;
-  padding: 1vh 2vh;
-
-  display: inline-block;
-  border: 0.2vh solid #ccc;
-  border-radius: 0.5vh;
-  box-sizing: border-box;
-}
-
-#errorLog {
-  color: red;
-  border: 0.2vh solid red;
-  padding: 1vh;
-  border-radius: 1vh;
-  opacity: 0;
 }

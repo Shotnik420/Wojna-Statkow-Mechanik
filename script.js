@@ -349,14 +349,14 @@ function wyborStatku(x) {
         dlugosc = 1;
         if (rotateShip == 0) {
         } else {
-          document.getElementById("siurek").style.backgroundImage =
+          document.getElementById("kursoor").style.backgroundImage =
             "url('img/statki/jedynkaH.png')";
         }
         rotateUpdate();
         return;
       case x == 2 && counter2 > 0:
         dlugosc = 2;
-        document.getElementById("siurek").style.backgroundImage =
+        document.getElementById("kursoor").style.backgroundImage =
           "url('img/statki/dwojkaV.png')";
         rotateUpdate();
         return;
@@ -410,45 +410,45 @@ function wyborStatku(x) {
 function rotateUpdate() {
   switch (true) {
     case dlugosc == 1 && rotateShip == 0:
-      document.getElementById("siurek").style.backgroundImage =
+      document.getElementById("kursoor").style.backgroundImage =
         "url('img/statki/jedynkaV.png')";
       break;
     case dlugosc == 1 && rotateShip == 1:
-      document.getElementById("siurek").style.backgroundImage =
+      document.getElementById("kursoor").style.backgroundImage =
         "url('img/statki/jedynkaH.png')";
       break;
 
     case dlugosc == 2 && rotateShip == 0:
-      document.getElementById("siurek").style.backgroundImage =
+      document.getElementById("kursoor").style.backgroundImage =
         "url('img/statki/dwojkaV.png')";
       break;
     case dlugosc == 2 && rotateShip == 1:
-      document.getElementById("siurek").style.backgroundImage =
+      document.getElementById("kursoor").style.backgroundImage =
         "url('img/statki/dwojkaH.png')";
       break;
     case dlugosc == 3 && rotateShip == 0:
-      document.getElementById("siurek").style.backgroundImage =
+      document.getElementById("kursoor").style.backgroundImage =
         "url('img/statki/trojkaV.png')";
       break;
     case dlugosc == 3 && rotateShip == 1:
-      document.getElementById("siurek").style.backgroundImage =
+      document.getElementById("kursoor").style.backgroundImage =
         "url('img/statki/trojkaH.png')";
       break;
     case dlugosc == 4 && rotateShip == 0:
-      document.getElementById("siurek").style.backgroundImage =
+      document.getElementById("kursoor").style.backgroundImage =
         "url('img/statki/czworkaV.png')";
       break;
     case dlugosc == 4 && rotateShip == 1:
-      document.getElementById("siurek").style.backgroundImage =
+      document.getElementById("kursoor").style.backgroundImage =
         "url('img/statki/czworkaH.png')";
       break;
   }
   if (rotateShip == 1) {
-    document.getElementById("siurek").style.height = "60px";
-    document.getElementById("siurek").style.width = 60 * dlugosc + "px";
+    document.getElementById("kursoor").style.height = "60px";
+    document.getElementById("kursoor").style.width = 60 * dlugosc + "px";
   } else {
-    document.getElementById("siurek").style.height = 60 * dlugosc + "px";
-    document.getElementById("siurek").style.width = "60px";
+    document.getElementById("kursoor").style.height = 60 * dlugosc + "px";
+    document.getElementById("kursoor").style.width = "60px";
   }
 }
 //Obracanie statku
@@ -469,7 +469,7 @@ function dodajStatek() {
   if (lista == 1) {
     dodajStatekCounter = 0;
     counter = 0;
-    document.querySelector("#siurek").style.opacity = 1;
+    document.querySelector("#kursoor").style.opacity = 1;
     document.querySelector("#plansza").addEventListener("click", (event) => {
       if (counter == 0) {
         for (j = 0; j < dlugosc; j++) {
@@ -659,12 +659,12 @@ function dodajStatek() {
         counter = 1;
       }
 
-      document.querySelector("#siurek").style.opacity = 0;
+      document.querySelector("#kursoor").style.opacity = 0;
     });
   } else if (lista == 2) {
     dodajStatekCounter2 = 0;
     counter2 = 0;
-    document.querySelector("#siurek").style.opacity = 1;
+    document.querySelector("#kursoor").style.opacity = 1;
     document.querySelector("#plansza").addEventListener("click", (event) => {
       if (counter2 == 0) {
         for (j = 0; j < dlugosc; j++) {
@@ -841,7 +841,7 @@ function dodajStatek() {
         counter2 = 1;
       }
 
-      document.querySelector("#siurek").style.opacity = 0;
+      document.querySelector("#kursoor").style.opacity = 0;
     });
   }
 
@@ -849,8 +849,8 @@ function dodajStatek() {
 }
 
 document.addEventListener("mousemove", function (e) {
-  document.querySelector("#siurek").style.left = eval(e.clientX - 30) + "px";
-  document.querySelector("#siurek").style.top = eval(e.clientY - 30) + "px";
+  document.querySelector("#kursoor").style.left = eval(e.clientX - 30) + "px";
+  document.querySelector("#kursoor").style.top = eval(e.clientY - 30) + "px";
 });
 
 var zmianaPlanszyCounter = 0;
@@ -1194,4 +1194,8 @@ function alertBox(text) {
 
 if (window.closed == "true") {
   window.open("https://www.w3schools.com");
+}
+
+function instrukcja() {
+  document.getElementById("onHold7").style.display = "flex";
 }
