@@ -539,15 +539,17 @@ body {
 }
 
 #onHold1--button {
-  height: 5vh;
-  width: 22vh;
   text-align: center;
+  height: 5vh;
+  width: 20vh;
+
   line-height: 5vh;
   border-radius: 1vh;
   border: 0.1vh solid white;
   font-family: "Inter", sans-serif;
   font-size: 3vh;
   color: white;
+  justify-content: center;
 }
 .buon2 {
   padding: 2vw 3vw;
