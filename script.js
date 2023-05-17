@@ -1237,8 +1237,8 @@ function wyborNicku(x) {
       alertBox("Nie ustawiaj pustego nicku");
     }
   } else if (x == 2) {
-    if (document.getElementById("nickHost").value.length !== 0) {
-      nickHost = document.getElementById("nickHost").value;
+    if (document.getElementById("nickGosc").value.length !== 0) {
+      nickGosc = document.getElementById("nickGosc").value;
       alertBox("Nick został ustawiony. ");
     } else {
       alertBox("Nie ustawiaj pustego nicku");
