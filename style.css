@@ -34,7 +34,7 @@ body {
 #mainStatement > section {
   width: 30vh;
   height: 30vh;
-  background-image: url(img/komputer.png);
+  background-image: url("./img/komputer.png");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -66,7 +66,7 @@ body {
 }
 
 #plansza {
-  background-image: url(https://2minutetabletop.com/wp-content/uploads/2019/04/Ocean-sea-water-tile-texture-map-assets-night.jpg);
+  background-image: url("https://2minutetabletop.com/wp-content/uploads/2019/04/Ocean-sea-water-tile-texture-map-assets-night.jpg");
   background-size: 200%;
   animation: animacjaWody 25s infinite linear;
   background-repeat: no-repeat;
@@ -80,7 +80,7 @@ body {
 }
 
 #plansza2 {
-  background-image: url(https://media.tenor.com/NqO231sqojIAAAAM/nerd-emoji-nerd.gif);
+  background-image: url("https://media.tenor.com/NqO231sqojIAAAAM/nerd-emoji-nerd.gif");
   background-size: 100% 100%;
 
   background-repeat: no-repeat;
@@ -128,7 +128,7 @@ body {
   width: 40vh;
   height: 40vh;
 
-  background-image: url(img/logo.png);
+  background-image: url("img/logo.png");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -165,7 +165,7 @@ body {
   align-items: center;
   justify-content: space-evenly;
   /* background-color: #80716b; */
-  background-image: url(img/dashboard.jpg);
+  background-image: url("img/dashboard.jpg");
   border-radius: 1vh;
   background-size: 100% 100%;
 
@@ -198,7 +198,7 @@ body {
   display: none;
   align-items: center;
   justify-content: space-evenly;
-  background-image: url(img/dashboard.jpg);
+  background-image: url("img/dashboard.jpg");
   border-radius: 1vh;
   background-size: 100% 100%;
 }
@@ -390,7 +390,7 @@ body {
 
   font-size: 2.5vh;
   display: flex;
-  background-image: url(img/button.webp);
+  background-image: url("img/button.webp");
   background-size: 100% 100%;
   border-radius: 1vh;
 
@@ -417,17 +417,17 @@ body {
 }
 
 #jedynka {
-  background-image: url(img/statki/jedynkaV.png);
+  background-image: url("img/statki/jedynkaV.png");
 }
 
 #dwojka {
-  background-image: url(img/statki/dwojkaV.png);
+  background-image: url("img/statki/dwojkaV.png");
 }
 #trojka {
-  background-image: url(img/statki/trojkaV.png);
+  background-image: url("img/statki/trojkaV.png");
 }
 #czworka {
-  background-image: url(img/statki/czworkaV.png);
+  background-image: url("img/statki/czworkaV.png");
 }
 #jedynka,
 #dwojka,
@@ -558,7 +558,7 @@ body {
   width: 5vh;
   background-color: rgba(0, 82, 31, 0.9);
   border-radius: 1vh;
-  background-image: url(img/missle.png);
+  background-image: url("img/missle.png");
   background-size: 50% 100%;
   background-repeat: no-repeat;
   background-position: center;
@@ -734,7 +734,7 @@ span {
   line-height: 6vh;
   text-align: center;
   color: white;
-  background-image: url(img/alertIcon.png);
+  background-image: url("img/alertIcon.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: -0.5vh;

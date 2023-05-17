@@ -150,19 +150,19 @@ function RedButton() {
   if (lista == 1) {
     if (counter1 == 0) {
       document.querySelector(".jedynka").style.backgroundImage =
-        "url('img/statki/jedynkaV-red.png')";
+        "url('img/statki/jedynkaVRed.png')";
     }
     if (counter2 == 0) {
       document.querySelector(".dwojka").style.backgroundImage =
-        "url('img/statki/dwojkaV-red.png')";
+        "url('img/statki/dwojkaVRed.png')";
     }
     if (counter3 == 0) {
       document.querySelector(".trojka").style.backgroundImage =
-        "url('img/statki/trojkaV-red.png')";
+        "url('img/statki/trojkaVRed.png')";
     }
     if (counter4 == 0) {
       document.querySelector(".czworka").style.backgroundImage =
-        "url('img/statki/czworkaV-Red.png')";
+        "url('img/statki/czworkaVRed.png')";
     }
   } else {
     if (
@@ -185,19 +185,19 @@ function RedButton() {
     }
     if (counter2_1 == 0) {
       document.querySelector(".jedynka").style.backgroundImage =
-        "url('img/statki/jedynkaV-red.png')";
+        "url('img/statki/jedynkaVRed.png')";
     }
     if (counter2_2 == 0) {
       document.querySelector(".dwojka").style.backgroundImage =
-        "url('img/statki/dwojkaV-red.png')";
+        "url('img/statki/dwojkaVRed.png')";
     }
     if (counter2_3 == 0) {
       document.querySelector(".trojka").style.backgroundImage =
-        "url('img/statki/trojkaV-red.png')";
+        "url('img/statki/trojkaVRed.png')";
     }
     if (counter2_4 == 0) {
       document.querySelector(".czworka").style.backgroundImage =
-        "url('img/statki/czworkaV-Red.png')";
+        "url('img/statki/czworkaVRed.png')";
     }
   }
 }
