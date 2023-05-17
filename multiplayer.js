@@ -64,6 +64,7 @@ function fuckTheNan() {
 }
 function polacz() {
   bitchKlucz = document.getElementById("kodGry").value;
+
   document.dispatchEvent(szukaj);
 }
 function anuluj(x) {

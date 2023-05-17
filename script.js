@@ -1092,22 +1092,42 @@ setInterval(() => {
     rakietyCap2 = 1;
   }
 
-  if (brokenStatki.length >= 20) {
+  if (brokenStatki.length >= 20 || ktoWygral == 2) {
     document.getElementById("matkaPlansza2").style.display = "none";
     document.getElementById("matkaPlansza").style.display = "none";
     document.getElementById("fightContainer").style.display = "none";
     document.getElementById("buonContainer").style.display = "none";
-    document.getElementById("ktory").innerHTML = lista;
+
+    document.getElementById("onHold4").style.display = "none";
+    document.getElementById("onHold5").style.display = "none";
+    document.getElementById("onHold6").style.display = "none";
+    document.getElementById("onHold7").style.display = "none";
     document.getElementById("onHold3").style.display = "flex";
     console.log("win 2");
-  } else if (brokenStatki2.length >= 20) {
+    ktoWygral = 2;
+    if (multi == 1) {
+      document.getElementById("ktory").innerHTML = nickGosc;
+    } else {
+      document.getElementById("ktory").innerHTML = "2 gracz";
+    }
+  } else if (brokenStatki2.length >= 20 || ktoWygral == 1) {
     console.log("win 1");
     document.getElementById("matkaPlansza2").style.display = "none";
     document.getElementById("matkaPlansza").style.display = "none";
     document.getElementById("fightContainer").style.display = "none";
     document.getElementById("buonContainer").style.display = "none";
-    document.getElementById("ktory").innerHTML = lista;
+
     document.getElementById("onHold3").style.display = "flex";
+    document.getElementById("onHold4").style.display = "none";
+    document.getElementById("onHold5").style.display = "none";
+    document.getElementById("onHold6").style.display = "none";
+    document.getElementById("onHold7").style.display = "none";
+    ktoWygral = 1;
+    if (multi == 1) {
+      document.getElementById("ktory").innerHTML = nickHost;
+    } else {
+      document.getElementById("ktory").innerHTML = "1 gracz";
+    }
   }
   if (lista == 1) {
     document.getElementById("fCounter").innerHTML = parseInt(
@@ -1185,6 +1205,7 @@ function shotsFired() {
 testcounter = 0;
 function alertBox(text) {
   document.getElementById("alertBoxText").innerHTML = text;
+
   document.getElementById("alertBox").style.animation = "alertBox 2.5s";
 
   setTimeout(() => {
@@ -1198,4 +1219,29 @@ if (window.closed == "true") {
 
 function instrukcja() {
   document.getElementById("onHold7").style.display = "flex";
+}
+function mainStatement() {
+  document.getElementById("mainStatement").style.animation =
+    "mainStatement 0.5s linear forwards";
+  setInterval(() => {
+    document.getElementById("mainStatement").style.display = "none";
+  }, 500);
+}
+
+function wyborNicku(x) {
+  if (x == 1) {
+    if (document.getElementById("nickHost").value.length !== 0) {
+      nickHost = document.getElementById("nickHost").value;
+      alertBox("Nick został ustawiony. ");
+    } else {
+      alertBox("Nie ustawiaj pustego nicku");
+    }
+  } else if (x == 2) {
+    if (document.getElementById("nickHost").value.length !== 0) {
+      nickHost = document.getElementById("nickHost").value;
+      alertBox("Nick został ustawiony. ");
+    } else {
+      alertBox("Nie ustawiaj pustego nicku");
+    }
+  }
 }

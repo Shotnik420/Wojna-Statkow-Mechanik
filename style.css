@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap");
 
 * {
   margin: 0;
@@ -17,6 +18,51 @@ body {
   background-position: center;
   overflow: hidden;
   font-family: "Inter", sans-serif;
+}
+
+#mainStatement {
+  position: absolute;
+  background-color: black;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#mainStatement > section {
+  width: 30vh;
+  height: 30vh;
+  background-image: url(img/komputer.png);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+#mainStatement > article {
+  margin-top: -30vh;
+  color: white;
+  font-size: 4vh;
+}
+#mainButton {
+  width: 12vh;
+  height: 5vh;
+  color: white;
+  font-size: 3vh;
+  border: 0.5vh solid white;
+  border-radius: 1vh;
+  text-align: center;
+  line-height: 5vh;
+
+  transition: 0.5s;
+}
+#mainButton:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  opacity: 0.8;
+}
+#mainStatement > a {
+  text-decoration: none;
 }
 
 #plansza {
@@ -420,7 +466,9 @@ body {
   animation: fade 500ms;
   font-family: "Inter", sans-serif;
 }
-
+#onHold3 {
+  z-index: 10;
+}
 #onHold1--keytext {
   color: white;
   font-size: 4vh;
@@ -442,7 +490,9 @@ body {
   color: white;
   font-size: 4vh;
 }
-#kodGry {
+#kodGry,
+#nickHost,
+#nickGosc {
   height: 5vh;
   margin-left: 2vh;
 
@@ -455,7 +505,25 @@ body {
   border-radius: 0.5vh;
   box-sizing: border-box;
 }
+#confirm {
+  width: 5vh;
+  height: 5vh;
+  color: white;
+  background-size: 100% 100%;
+  background-color: rgb(43, 95, 22);
+  border: none;
+  margin-left: 2vh;
+  border-radius: 0.5rem;
+  font-size: 2.5vh;
 
+  transition: 0.5s;
+}
+
+#confirm:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  background-color: rgb(29, 63, 15);
+}
 #errorLog {
   color: red;
   border: 0.2vh solid red;
@@ -464,7 +532,8 @@ body {
   opacity: 0;
 }
 
-#onHold1--text {
+#onHold1--text,
+#ktory {
   color: white;
   font-size: 6vh;
 }
@@ -613,6 +682,16 @@ span {
     left: -30vh;
   }
 }
+
+@keyframes mainStatement {
+  0% {
+    opacity: 100%;
+  }
+  100% {
+    opacity: 0%;
+    display: none;
+  }
+}
 #boobies {
   width: 20px;
   height: 50px;
@@ -659,7 +738,7 @@ span {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: -0.5vh;
-  z-index: 5;
+  z-index: 20;
 }
 #alertBox p {
   margin-left: 3vh;

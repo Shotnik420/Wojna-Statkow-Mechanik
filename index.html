@@ -8,6 +8,12 @@
     <link rel="stylesheet" type="text/css" href="./style.css" />
   </head>
   <body>
+    <div id="mainStatement">
+      <section></section>
+      <article>Gra przystosowana jest do gry na komputerze</article>
+      <div id="mainButton" onclick="mainStatement()">Dalej</div>
+    </div>
+
     <div id="alertBox"><p id="alertBoxText">Wykorzystaj wszystkie pociski!</p></div>
     <div id="mainMenu">
       <div id="info" onclick="instrukcja()">?</div>
@@ -45,7 +51,7 @@
       <div id="onHold1--button" onClick="zmianaPlanszy()">Potwierdzam</div>
     </div>
     <div id="onHold3">
-      <div id="onHold1--text">Wygrał <span id="ktory"></span> Gracz</div>
+      <div id="onHold1--text">Wygrał <span id="ktory"></span></div>
       <div id="onHold1--button" onClick="window.location.reload()">Wróc do menu</div>
     </div>
     <div id="onHold4">
@@ -55,12 +61,14 @@
     <div id="onHold5">
       <div id="onHold1--text">Jesteś hostem</div>
       <div id="onHold1--keytext">Twój kod to: <span id="dawajKlucz"></span></div>
+      <div id="onHold2--keytext">Wpisz nick: <input type="text" id="nickHost" maxlength="7"/><button id="confirm" onclick="wyborNicku(1)">✓</button></div>
       <div id="onHold1--button" class="multiB" onClick="startGame(1)">Kontynuuj</div>
       <div id="onHold1--button" onclick="anuluj(2)">Wroc</div>
     </div>
     <div id="onHold6">
       <div id="onHold1--text">Dołącz do gry</div>
       <div id="onHold2--keytext">Wpisz kod gry: <input type="text" id="kodGry" maxlength="5"/></div>
+      <div id="onHold2--keytext">Wpisz nick: <input type="text" id="nickGosc" maxlength="7"/><button id="confirm" onclick="wyborNicku(2)">✓</button></div>
       <div id="errorLog" >Niepoprawny kod!</div>
       <div id="onHold1--button" class="multiB" onClick="polacz()">Połącz</div>
       <div id="onHold1--button" onclick="anuluj(2)">Wroc</div>

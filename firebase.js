@@ -70,6 +70,15 @@ function sendData() {
   })
     .then(() => {
       console.log("pakiet wysłany");
+      if (lista == 1) {
+        update(ref(db, "Game/" + klucz), {
+          NickH: nickHost,
+        });
+      } else if (lista == 2) {
+        update(ref(db, "Game/" + klucz), {
+          NickG: nickGosc,
+        });
+      }
       zmianaPlanszy();
       return false;
     })
@@ -78,11 +87,22 @@ function sendData() {
     });
 }
 function getPlayer() {
-  const duparef = ref(db);
+  let duparef = ref(db);
   get(child(duparef, "Game/" + klucz + "/Gracz")).then((snapshot) => {
     whoGames = snapshot.val();
   });
+  if (ktoWygral > 0) {
+    set(ref(db, "Game/" + klucz + "/wygrana"), {
+      KtoWygral: ktoWygral,
+    });
+  }
+  get(child(duparef, "Game/" + klucz + "/wygrana/KtoWygral")).then(
+    (snapshot) => {
+      ktoWygral = snapshot.val();
+    }
+  );
 }
+
 function getData() {
   const dbref = ref(db);
   console.log("getting data");
@@ -158,6 +178,16 @@ function getData() {
   get(child(dbref, "Game/" + klucz + "/Counter2_4")).then((snapshot) => {
     counter2_4 = snapshot.val();
   });
+  if (lista == 1) {
+    get(child(dbref, "Game/" + klucz + "/NickG")).then((snapshot) => {
+      nickGosc = snapshot.val();
+    });
+  } else {
+    get(child(dbref, "Game/" + klucz + "/NickH")).then((snapshot) => {
+      nickHost = snapshot.val();
+    });
+  }
+
   get(child(dbref, "Game/" + klucz + "/KillMode"))
     .then((snapshot) => {
       killmode = snapshot.val();
@@ -187,6 +217,7 @@ function szablon() {
     Counter2_3: counter2_3,
     Counter2_4: counter2_4,
     KillMode: killmode,
+    KtoWygral: ktoWygral,
   }).then(() => {
     console.log("pakiet wysłany");
 

@@ -44,3 +44,8 @@ whoGames = 0;
 Gamer = 0;
 
 needReload = 0;
+
+ktoWygral = 0;
+
+nickHost = "Host";
+nickGosc = "Gość";
